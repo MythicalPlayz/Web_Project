@@ -8,17 +8,19 @@
     <h1>Login - Job search website</h1>
     <body>
       <hr />
+      <form>
       <div>
         <label for="username"><h4>Username</h4></label>
-        <input type="text" id="username" required name="username" />
+        <input type="text" id="username" required name="username" minlength="2"/>
       </div>
 
       <div>
         <label for="password"><h4>Password</h4></label>
-        <input type="password" id="password" required name="password" /> <br />
+        <input type="password" id="password" required name="password" minlength="8"/> <br />
       </div>
       <br />
       <input type="submit" value="Login" />
     </form>
     </body>
+    <a href="sign_up.html">Don't have an Account ?</a>
 </html>
