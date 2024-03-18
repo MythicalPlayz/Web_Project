@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Login - Job search website</title>
+        <title>Admin Login</title>
         <meta charset="UTF-8">
     </head>
 
-    <h1>Login - Job search website</h1>
     <body>
+      <h1>Login (Admin)</h1>
       <hr />
-      <form>
-      <div>
-        <label for="username"><h4>Username</h4></label>
-        <input type="text" id="username" required name="username" minlength="2"/>
+      <div class="container">
+        <form>
+          <div class="form-input">
+            <label for="username"><h4>Username</h4></label>
+            <input type="text" id="username" required name="username" minlength="2"/>
+          </div>
+    
+          <div class="form-input">
+            <label for="password"><h4>Password</h4></label>
+            <input type="password" id="password" required name="password" minlength="8"/> <br />
+          </div>
+          <br />
+          <input type="submit" value="Login" />
+        </form>
       </div>
-
-      <div>
-        <label for="password"><h4>Password</h4></label>
-        <input type="password" id="password" required name="password" minlength="8"/> <br />
-      </div>
-      <br />
-      <input type="submit" value="Login" />
-    </form>
     </body>
-    <a href="sign_up.html">Don't have an Account ?</a>
+    <a href="sign_up.html">Don't have an Admin Account ?</a>
+    <br/>
+    <a href="../user/login.html">Not an admin ? User Login</a>
 </html>

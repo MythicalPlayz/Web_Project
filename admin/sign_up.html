@@ -2,70 +2,77 @@
 <html>
 
 <head>
-  <title>Sign Up - Job search website</title>
+  <title>Admin Sign Up</title>
   <meta charset="UTF-8">
 </head>
 
 <body>
-  <form>
-    <h1>Sign Up - Job search website</h1>
-    <hr />
-
-    <div>
-      <label for="username">
-        <h4>Username</h4>
+  <h1>Sign Up (Admin)</h1>
+  <hr />
+  
+  <div class="container">
+    <form>
+      <div>
+        <label for="username">
+          <h4>Username</h4>
+        </label>
+        <input type="text" id="username" minlength="1" required name="username" />
+      </div>
+  
+      <div>
+        <label for="password">
+          <h4>Password</h4>
+        </label>
+        <input type="password" id="password" required name="password" minlength="8" />
+      </div>
+  
+      <div>
+        <label for="confirm_password">
+          <h4>Confirm password</h4>
+        </label>
+        <input type="password" id="confirm_password" required name="confirm_password" minlength="8" />
+      </div>
+  
+      <div>
+        <label for="email">
+          <h4>Email</h4>
+        </label>
+        <input type="email" id="email" required name="email" />
+      </div>
+      <br />
+  
+      <label for="is_company_admin">Are you a company Admin ?</label>
+      <input type="checkbox" id="is_company_admin" name="is_company_admin" />
+      <br />
+  
+      <label for="company_name" id="company_namelabel">
+        <h4>Company Name</h4>
       </label>
-      <input type="text" id="username" minlength="1" required name="username" />
-    </div>
-
-    <div>
-      <label for="password">
-        <h4>Password</h4>
-      </label>
-      <input type="password" id="password" required name="password" minlength="8"/>
-    </div>
-
-    <div>
-      <label for="confirm_password">
-        <h4>Confirm password</h4>
-      </label>
-      <input type="password" id="confirm_password" required name="confirm_password" minlength="8"/>
-    </div>
-
-    <div>
-      <label for="email">
-        <h4>Email</h4>
-      </label>
-      <input type="email" id="email" required name="email" />
-    </div>
-    <br />
-
-    <label for="is_company_admin">Are you a company Admin ?</label> 
-    <input type="checkbox" id="is_company_admin" name="is_company_admin"/>
-    <br />
-    
-    <label for="company_name" id="company_namelabel">
-      <h4>Company Name</h4>
-    </label>
-    <input type="text" id="company_name" minlength="1" required name="company_name" value="No Company"/>
-
-
-    <style>
-      #is_company_admin:checked  ~ #company_name  {
+      <input type="text" id="company_name" minlength="1" required name="company_name" value="No Company" />
+  
+  
+      <style>
+        /* Temporary */
+        #is_company_admin:checked~#company_name {
           display: inline-block;
-      }
-      #is_company_admin:checked  ~ #company_namelabel  {
+        }
+  
+        #is_company_admin:checked~#company_namelabel {
           display: block;
-      }
-
-      #company_namelabel , #company_name {
-        display: none;
-      }
-    </style>
-
-    <br /><input type="submit" value="Sign up" /> <br />
-  </form>
-  <a href="login.html">Already have an Account ?</a>
+        }
+  
+        #company_namelabel,
+        #company_name {
+          display: none;
+        }
+      </style>
+  
+      <br /><input type="submit" value="Sign up" /> <br />
+    </form>
+    <a href="login.html">Already have an Account ?</a>
+    <br />
+    <a href="../user/sign_up.html">Not an admin ? User Sign Up</a>
+  </div>
 </body>
 
 </html>
