@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+
+        <title>Add New Job Opportunity</title>
+
+    </head>
+
+    <body>
+
+        <h1>Add New Job Opportunity</h1>
+
+        <div class="container">
+            <form>
+              <div class="form-input">
+                <label for="JobID"><h4>Job ID</h4></label>
+                <input type="text" id="JobID" required name="JobID" minlength="1"/>
+              </div>
+
+              <div class="form-input">
+                <label for="JobTitle"><h4>Job Title</h4></label>
+                <input type="text" id="JobTitle" required name="JobTitle" />
+              </div>
+
+              <div class="form-input">
+                <label for="CompanyName"><h4>Company Name</h4></label>
+                <input type="text" id="CompanyName" required name="CompanyName" />
+              </div>
+
+              <div>
+                <label for="JobStatus"><h4> Job Status :</h4></label>
+                <select id="JobStatus" name="JobStatus">
+                    <option value="open">Open</option>
+                    <option value="closed">Closed</option>
+                </select>
+             </div>
+
+              <div class="form-input">
+                <label for="Description"><h4>Description</h4></label>
+                <textarea type="text" id="Description" name="Description" rows="4" cols="50"required maxlength="100"></textarea> 
+              </div>
+
+              <div class="form-input">
+                <label for="YearsofExperience"><h4>Years of Experience</h4></label>
+                <input type="text" id="YearsofExperience" required name="YearsofExperience" minlength="1"/>
+              </div>
+        
+              <br />
+
+              <input type="submit" value="Submit" />
+
+            </form>
+
+    </body>
+
+</html>
