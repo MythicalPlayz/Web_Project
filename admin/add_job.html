@@ -3,13 +3,14 @@
 
     <head>
 
-        <title>Add New Job Opportunity</title>
+        <title>Add New Job</title>
 
     </head>
 
     <body>
 
-        <h1>Add New Job Opportunity</h1>
+        <h1>Add New Job</h1>
+        <hr/>
 
         <div class="container">
             <form>
@@ -45,10 +46,15 @@
                 <label for="YearsofExperience"><h4>Years of Experience</h4></label>
                 <input type="text" id="YearsofExperience" required name="YearsofExperience" minlength="1"/>
               </div>
+
+              <div class="form-input">
+                <label for="Salary"><h4>Salary</h4></label>
+                <input type="number" id="Salary" required name="Salary" min="0"/>
+              </div>
         
               <br />
 
-              <input type="submit" value="Submit" />
+              <input type="submit" value="Create" />
 
             </form>
 
