@@ -64,6 +64,38 @@ nav .user .split {
     height: 24px;
 }
 
+nav .quick-links {
+    padding: 0;
+    display: flex;
+    gap: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
+nav .quick-links li{
+    list-style: none;
+    font-family: var(--font-open-sans);
+}
+
+nav .quick-links li a {
+    position: relative;
+}
+
+nav .quick-links li a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 1px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--text-color-w);
+    transition: all 250ms ease-in-out;
+}
+
+nav .quick-links li:hover a::after {
+    width: 100%;
+}
+
 a, button {
     color: inherit;
     font-family: inherit;
