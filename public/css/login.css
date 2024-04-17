@@ -1,0 +1,114 @@
+.container {
+    position: relative;
+    height: 100vh;
+}
+
+.container .image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+.container .black-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--main-color-alpha);
+}
+
+.container .inner-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: relative;
+}
+
+.container .inner-container h3 {
+    font-family: var(--font-inter);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 48px;
+    color: var(--text-color-w);
+}
+
+.container .inner-container .main {
+    background-color: var(--main-color-light);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: var(--border-radius-l);
+    gap: 32px;
+    width: 30%;
+}
+
+.container .inner-container .main .options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: var(--border-radius-f);
+    width: 100%;
+    height: 64px;
+    color: var(--text-color-w);
+    background-color: var(--main-color-normal);
+    margin-top: 32px;
+}
+
+.container .inner-container .main .options a {
+    width: 50%;
+    font-family: var(--font-roboto);
+    font-size: 24px;
+    height: 100%;
+    color: var(--text-color-w);
+    border-radius: var(--border-radius-f);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .inner-container .main .options .selected {
+    background-color: var(--main-color-vlight);
+    color: var(--text-color-b);
+}
+
+.container .inner-container .main .form input {
+    height: 64px;
+    width: calc(100% - 32px);
+    display: block;
+    background-color: var(--main-color-vlight);
+    border: 0;
+    border-radius: var(--border-radius-f);
+    padding-inline: 16px;
+    margin-bottom: 32px;
+    font-size: 24px;
+    font-family: var(--font-open-sans);
+    font-style: normal;
+}
+
+.container .inner-container .main .form input:placeholder-shown {
+    font-style: italic;
+}
+
+.container .inner-container .main .form input:focus {
+    outline: 5px var(--main-color-normal) solid;
+}
+
+.container .inner-container .main .form #login {
+    width: 45%;
+    margin: auto;
+    color: var(--text-color-w);
+    background-color: var(--main-color-normal);
+    transition: all 250ms ease-in-out;
+}
+
+.container .inner-container .main .form #login:hover {
+    box-sizing: border-box;
+    border: 5px solid var(--main-color-dark);
+    background-color: #0000;
+}

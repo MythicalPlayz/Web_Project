@@ -1,0 +1,81 @@
+:root {
+    --main-color-dark: #003C43;
+    --main-color-normal: #135d66;
+    --main-color-light: #77b0aa;
+    --main-color-vlight: #e3fef7;
+    --main-color-alpha: #00000088;
+
+    --border-radius-s: 8px;
+    --border-radius-m: 12px;
+    --border-radius-l: 16px;
+    --border-radius-f: 2rem;
+
+    --font-poppins: 'Poppins';
+    --font-inter: 'Inter';
+    --font-roboto: 'Roboto';
+    --font-open-sans: 'Open Sans';
+
+    --text-color-b: #000;
+    --text-color-w: #fff;
+    --text-color-g: #888;
+}
+
+body {
+    margin: 0;
+}
+
+nav {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    padding-inline: 50px;
+    background-color: var(--main-color-normal);
+    color: var(--text-color-w);
+    z-index: 999;
+}
+
+nav h2 {
+    font-family: var(--font-poppins);
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-size: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav .user {
+    display: flex;
+    gap: 5px;
+    font-family: var(--font-open-sans);
+    height: 100%;
+    align-items: center;
+}
+
+nav .user .split {
+    background-color: var(--text-color-w);
+    width: 2px;
+    height: 24px;
+}
+
+a, button {
+    color: inherit;
+    font-family: inherit;
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+}
+
+#human-verify {
+    display: none;
+}
