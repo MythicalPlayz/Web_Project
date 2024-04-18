@@ -4,75 +4,69 @@
 <head>
   <title>Admin Sign Up</title>
   <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="public/css/root.css" />
+  <link rel="stylesheet" href="public/css/login-signup.css" />
 </head>
 
 <body>
-  <h1>Sign Up (Admin)</h1>
-  <hr />
-  
+  <nav>
+    <h2>JOB PORTAL</h2>
+    <div class="user">
+      <a href="login.html">Log In</a>
+      <div class="split"></div>
+      <a href="signup.html">Sign Up</a>
+    </div>
+  </nav>
   <div class="container">
-    <form>
-      <div>
-        <label for="username">
-          <h4>Username</h4>
-        </label>
-        <input type="text" id="username" minlength="1" required name="username" />
+    <div class="image">
+      <img src="public/img/Picture.jpg" alt="Business Meeting" />
+    </div>
+    <div class="black-bg"></div>
+    <div class="inner-container">
+      <h3>Welcome! We are happy to have you!</h3>
+      <div class="main">
+        <div class="options">
+          <a href="login.html">Log in</a>
+          <a href="#" class="selected">Sign Up</a>
+        </div>
+        <div class="form">
+          <form id="info">
+            <input type="text" placeholder="Username" name="username" minlength="8" required />
+            <input type="text" id="human-verify" />
+            <input type="password" placeholder="Password" name="password" minlength="8" required />
+            <input type="password" placeholder="Confirm Password" name="con-password" minlength="8" required />
+            <input type="email" placeholder="Email" name="email" required />
+            <div class="type">
+              <input type="radio" name="type" id="user" value="user" checked />
+              <label for="user">User</label>
+              <input type="radio" name="type" id="admin" value="admin" />
+              <label for="admin">Admin</label>
+              <input type="radio" name="type" id="coadmin" value="coadmin" />
+              <label for="coadmin">Company Admin</label>
+            </div>
+            <input type="text" placeholder="Company Name" name="company" id="company" />
+            <!-- Will Add require in the JS -->
+            <input type="submit" value="Sign Up" id="signup" />
+          </form>
+        </div>
       </div>
-  
-      <div>
-        <label for="password">
-          <h4>Password</h4>
-        </label>
-        <input type="password" id="password" required name="password" minlength="8" />
-      </div>
-  
-      <div>
-        <label for="confirm_password">
-          <h4>Confirm password</h4>
-        </label>
-        <input type="password" id="confirm_password" required name="confirm_password" minlength="8" />
-      </div>
-  
-      <div>
-        <label for="email">
-          <h4>Email</h4>
-        </label>
-        <input type="email" id="email" required name="email" />
-      </div>
-      <br />
-  
-      <label for="is_company_admin">Are you a company Admin ?</label>
-      <input type="checkbox" id="is_company_admin" name="is_company_admin" />
-      <br />
-  
-      <label for="company_name" id="company_namelabel">
-        <h4>Company Name</h4>
-      </label>
-      <input type="text" id="company_name" minlength="1" required name="company_name" value="No Company" />
-  
-  
-      <style>
-        /* Temporary */
-        #is_company_admin:checked~#company_name {
-          display: inline-block;
-        }
-  
-        #is_company_admin:checked~#company_namelabel {
-          display: block;
-        }
-  
-        #company_namelabel,
-        #company_name {
-          display: none;
-        }
-      </style>
-  
-      <br /><input type="submit" value="Sign up" /> <br />
-    </form>
-    <a href="login.html">Already have an Account ?</a>
-    <br />
-    <a href="../user/sign_up.html">Not an admin ? User Sign Up</a>
+    </div>
   </div>
 </body>
+<script src="public/js/validateInput.js"></script>
+<script>
+  const coadminRadio = document.getElementById('coadmin');
+  const radioButtons = document.querySelectorAll("input[type='radio']")
+  for (radio of radioButtons){
+    radio.addEventListener('click', function() {
+    manageRequired('company',coadminRadio.checked)
+  })
+  }
+</script>
 
 </html>
