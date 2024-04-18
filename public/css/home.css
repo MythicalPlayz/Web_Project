@@ -82,6 +82,7 @@
     font-family: var(--font-roboto);
     border-radius: var(--border-radius-f);
     margin: 8px auto;
+    transition: all 250ms ease-in-out;
 }
 
 .container .quick-link {
@@ -91,4 +92,9 @@
 
 .container .quick-link a{
     margin: 8px;
+}
+
+.container a:hover {
+    background-color: var(--main-color-vlight);
+    color:  var(--text-color-b);
 }
