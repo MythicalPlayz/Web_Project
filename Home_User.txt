@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Portal</title>
+    <style>
+        /* General styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        nav {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .quick-links {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .quick-links li {
+            margin-right: 20px;
+        }
+        .quick-links li:last-child {
+            margin-right: 0;
+        }
+        .user {
+            display: flex;
+            align-items: center;
+        }
+        .split {
+            height: 20px;
+            width: 2px;
+            background-color: #fff;
+            margin: 0 10px;
+        }
+        /* Frame styling */
+        .frame {
+            width: calc(33.33% - 20px);
+            margin-right: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+        .frame h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        .frame p {
+            font-size: 18px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h2>JOB PORTAL</h2>
+        <ul class="quick-links">
+            <li><a href="add_job.html">Job</a></li>
+            <li><a href="list_jobs.html">History</a></li>
+           
+        </ul>
+        <div class="user">
+            <a href="home.html" id="username">NAME</a>
+            <div class="split"></div>
+            <a href="#">Log Out</a>
+        </div>
+    </nav>
+    <div class="container">
+        <h2>Welcome, USERNAME!</h2>
+        <h3>Jobs Applied</h3>
+      
+        <div class="frame">
+            <h2>JOBNAME</h2>
+            <p>CompanyName / AdminName</p>
+            <p>Status: Accepted</p>
+        </div>
+        <div class="frame">
+            <h2>JOBNAME</h2>
+            <p>CompanyName / AdminName</p>
+            <p>Status: Accepted</p>
+        </div>
+        <div class="frame">
+            <h2>JOBNAME</h2>
+            <p>CompanyName / AdminName</p>
+            <p>Status: Accepted</p>
+        </div>
+    </div>
+</body>
+</html>
