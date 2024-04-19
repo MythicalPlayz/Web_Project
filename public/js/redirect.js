@@ -6,5 +6,5 @@
 function redirectTo(URL, delay = 1000) {
     setTimeout(function() {
     window.location.href = URL
-    }, delay)
+    }, delay);
 }

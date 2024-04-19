@@ -62,10 +62,10 @@
 <script src="public/js/validateInput.js"></script>
 <script>
   const coadminRadio = document.getElementById('coadmin');
-  const radioButtons = document.querySelectorAll("input[type='radio']")
+  const radioButtons = document.querySelectorAll("input[type='radio']");
   for (radio of radioButtons){
     radio.addEventListener('click', function() {
-    manageRequired('company',coadminRadio.checked)
+    manageRequired('company',coadminRadio.checked);
   })
   }
 </script>

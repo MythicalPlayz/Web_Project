@@ -34,5 +34,10 @@
     </div>
 </body>
     <script src="../public/js/redirect.js"></script>
-    <script>redirectTo('home.html',5000)</script>
+    <script src="../public/js/accounts.js"></script>
+    <script>
+        if (!checkIfSignedIn())
+            redirectTo('../login.html',0);
+        redirectTo('home.html',5000);
+    </script>
 </html>
