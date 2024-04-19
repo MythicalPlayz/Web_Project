@@ -35,7 +35,7 @@
           <a href="login.html">Log in</a>
           <a href="#" class="selected">Sign Up</a>
         </div>
-        <div class="form">
+        <div class="form" onsubmit="return false">
           <form id="info">
             <input type="text" placeholder="Username" name="username" minlength="8" required />
             <input type="text" id="human-verify" />
@@ -59,15 +59,7 @@
     </div>
   </div>
 </body>
-<script src="public/js/validateInput.js"></script>
-<script>
-  const coadminRadio = document.getElementById('coadmin');
-  const radioButtons = document.querySelectorAll("input[type='radio']");
-  for (radio of radioButtons){
-    radio.addEventListener('click', function() {
-    manageRequired('company',coadminRadio.checked);
-  })
-  }
-</script>
-
+<script type="module" src="public/js/redirect-module.js"></script>
+<script src="public/js/accounts.js" type="module"></script>
+<script src="public/js/validateAccountInput.js" type="module"></script>
 </html>
