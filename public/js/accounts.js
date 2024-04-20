@@ -135,6 +135,12 @@ function getAccountInfo() {
 if (window.location.href.includes('/user/') || window.location.href.includes('/admin/')){
     let acc = getAccountInfo();
     let name = acc.username;
+    let type = acc.type;
+
+    if ((window.location.href.includes('/user/') && type !== 'user') || (window.location.href.includes('/admin/') && type === 'user')){
+        redirectTo('../login.html',0);
+    }
+    
     document.querySelector('nav #username').innerHTML = name;
     let title = document.querySelector('.container #welcome');
     if (title)
