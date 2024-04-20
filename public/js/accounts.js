@@ -68,8 +68,9 @@ function checkIfSignedIn() {
         return false;
     }
 
+    accountDB = JSON.parse(accountDB);
     let account = getAccountFromDB();
-    return (account === null) ? false : true;
+    return (account === null) ? false : account;
 }
 
 function addAccount(username, password, type, email, company) {
@@ -122,6 +123,22 @@ function loginAccount(username, password) {
         }
     }
     alert('Wrong Email/Password');
+}
+
+function getAccountInfo() {
+    let account = checkIfSignedIn();
+    if (!account)
+        redirectTo('../login.html',0);
+    return account;
+}
+
+if (window.location.href.includes('/user/') || window.location.href.includes('/admin/')){
+    let acc = getAccountInfo();
+    let name = acc.username;
+    document.querySelector('nav #username').innerHTML = name;
+    let title = document.querySelector('.container #welcome');
+    if (title)
+        title.innerHTML = "Welcome, " + name;
 }
 
 export { addAccount , loginAccount}
