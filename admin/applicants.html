@@ -1,59 +1,98 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-
-    <title>
-
-        Applicant
-
-    </title> 
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Applicants</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="../public/css/root.css" />
+    <link rel="stylesheet" href="../public/css/admin/applicants.css">
+    <link rel="shortcut icon" href="../public/img/icon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="Job Applicants.css">
 </head>
 
 <body>
     <nav>
-        <span>Job Portal</span>
-        <button>Create</button>
-        <button>Manage</button>
-        <span><a href="home.html">USERNAME</a></span>
-        <span><a href="login.html">Logout</a></span>
-      </nav>
-    <h1>Applicant of JOBNAME</h1>
-    <h4>JOBID</h4>
-    <hr/>
-    <table border="1">
-        <thead>
-         <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Resume</th>
-                <th>Accept</th>
-                <th>Reject</th>
-         </tr>
-        </thead>
-
-        <tbody>
-
-            <tr>
-                <td>Eyad Ahmed Taimour</td>
-                <td>a@a.com</td>
-                <td><a href=""></a>Resume.pdf</td>
-                <td><input type="button" value="Accept"></td>
-                <td><input type="button" value="Reject"></td>
-            </tr>
-            <tr>
-                <td>Kyle Joe</td>
-                <td>a@a.com</td>
-                <td><a href=""></a>Resume.docx</td>
-                <td><input type="button" value="Accept"></td>
-                <td><input type="button" value="Reject"></td>
-            </tr>
-
-        </tbody>
-
-    </table>
-
+        <h2>JOB PORTAL</h2>
+        <ul class="quick-links">
+            <li><a href="add_job.html">Create</a></li>
+            <li><a href="edit_job.html">Manage</a></li>
+            <li><a href="applicants.html">Applicants</a></li>
+        </ul>
+        <div class="user">
+            <a href="home.html" id="username">NAME</a>
+            <div class="split"></div>
+            <a href="">Log Out</a>
+        </div>
+    </nav>
+    <div class="container">
+        <h2>Applicants</h2>
+        <div class="inner-container">
+            <div class="filter">
+                <h3>FILTER APP</h3>
+                <form>
+                    <input type="text" id="jobID" placeholder="Job ID" name='jobid' required />
+                    <input type="submit" value="Filter" id="filter" />
+                </form>
+            </div>
+            <div class="applicants" id="applicants">
+                <div class="job">
+                    <div class="job-info">
+                        <h3 id="id">ID</h3>
+                        <h3 id="name">JOBNAME</h3>
+                    </div>
+                    <div class="app-info">
+                        <p>Full Name</p>
+                        <p>Email</p>
+                        <p>Resume</p>
+                    </div>
+                    <div class="app-value">
+                        <p class="name">Joe Smith</p>
+                        <p class="email">e@e.com</p>
+                        <a class="resume" href="/index.html" target="_blank">Download</a>
+                    </div>
+                    <div class="status">
+                        <p class="type">Status: Accepted</p>
+                        <p class="admin">Admin Name</p>
+                    </div>
+                    <div class="buttons">
+                        <button class="accept">Accept</button>
+                        <button class="deny">Deny</button>
+                    </div>
+                </div>
+                <div class="job">
+                    <div class="job-info">
+                        <h3 id="id">ID</h3>
+                        <h3 id="name">JOBNAME</h3>
+                    </div>
+                    <div class="app-info">
+                        <p>Full Name</p>
+                        <p>Email</p>
+                        <p>Resume</p>
+                    </div>
+                    <div class="app-value">
+                        <p class="name">Joe Smith</p>
+                        <p class="email">e@e.com</p>
+                        <a class="resume" href="/index.html" target="_blank">Download</a>
+                    </div>
+                    <div class="status">
+                        <p class="type">Status: Accepted</p>
+                        <p class="admin">Admin Name</p>
+                    </div>
+                    <div class="buttons">
+                        <button class="accept">Accept</button>
+                        <button class="deny">Deny</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
-
+<script src="/public/js/accounts.js" type="module"></script>
+<script src="../public/js/redirect.js"></script>
 </html>
