@@ -93,6 +93,11 @@ function setParameters(id) {
     if (admin){
         admin.innerHTML = "Created by " + job.admin;
     }
+    let anchors = document.querySelectorAll('.buttons a');
+        for (let anchor of anchors){
+            console.log(anchor.getAttribute('href'));
+            anchor.setAttribute('href',anchor.getAttribute('href') + job.id);
+        }
 }
 
 function setParametersEdit(id) {
