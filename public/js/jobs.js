@@ -135,6 +135,12 @@ function updateJob(id, name, status, xp, description, salary) {
     }
 }
 
+function deleteJob(ID){
+    delete JobsDB[ID];
+    saveDB();
+    alert('Job Deleted');
+    redirectTo('home.html',0);
+}
 
 
 
@@ -179,5 +185,4 @@ function updateJob(id, name, status, xp, description, salary) {
 
 
 
-
-export {addJob, setParameters, setParametersEdit, updateJob}
+export {addJob, setParameters, setParametersEdit, updateJob, deleteJob}
