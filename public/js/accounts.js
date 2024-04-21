@@ -39,10 +39,11 @@ function removeLocalStorage(key) {
     return 0;
 }
 
-var savedAccount = null, accountDB = [];
+var savedAccount = null, accountDB = {};
 
 function getAccountFromDB() {
-    for (let account of accountDB) {
+    for (let index in accountDB) {
+        let account = accountDB[index];
         if (account.username === savedAccount.username && account.password === savedAccount.password) {
             return account;
         }
@@ -50,9 +51,23 @@ function getAccountFromDB() {
     return null
 }
 
-function isOnRightPage(account, type) {
-    return account.type == type;
+function exists(username){
+    return accountDB[username];
 }
+
+function loadDB(){
+    accountDB = getLocalStorage('accounts');
+    accountDB = JSON.parse(accountDB);
+    if (!accountDB) {
+        accountDB = {};
+    }
+}
+
+function saveDB(){
+    setLocalStorage('accounts', JSON.stringify(accountDB));
+}
+
+loadDB();
 
 function checkIfSignedIn() {
     savedAccount = getLocalStorage('local-account');
@@ -62,21 +77,23 @@ function checkIfSignedIn() {
     }
 
     savedAccount = JSON.parse(savedAccount);
-    accountDB = getLocalStorage('accounts');
+    
     if (accountDB === null) {
         //redirect to login
         return false;
     }
-
-    accountDB = JSON.parse(accountDB);
     let account = getAccountFromDB();
     return (account === null) ? false : account;
 }
 
 function addAccount(username, password, type, email, company) {
+    if (exists(username)){
+        alert('Username Already Taken');
+        return 0;
+    }
     let newAcc = new Account(username, password, type, email, company);
-    accountDB.push(newAcc);
-    setLocalStorage('accounts', JSON.stringify(accountDB));
+    accountDB[username] = newAcc;
+    saveDB();
     console.log('Account Created');
     savedAccount = {
         'username': username,
@@ -93,17 +110,9 @@ function addAccount(username, password, type, email, company) {
     }
 }
 
-accountDB = getLocalStorage('accounts');
-
-if (accountDB) {
-    accountDB = JSON.parse(accountDB);
-}
-else {
-    accountDB = [];
-}
-
 function loginAccount(username, password) {
-    for (let account of accountDB) {
+    for (let index in accountDB) {
+        let account = accountDB[index];
         if (isRightInfo(account, username, password)) {
             console.log('Account Logged In');
             savedAccount = {
