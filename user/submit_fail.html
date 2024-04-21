@@ -33,12 +33,11 @@
         <h4>Please try again at a later time<br/>You will be redirected shortly</h4>
     </div>
 </body>
+    <script src="/public/js/accounts.js" type="module"></script>
     <script src="../public/js/redirect.js"></script>
-    <script src="../public/js/accounts.js"></script>
     <script>
         if (!checkIfSignedIn())
             redirectTo('../login.html',0);
         redirectTo('home.html',5000);
     </script>
-    <script src="/public/js/accounts.js" type="module"></script>
 </html>

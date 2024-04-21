@@ -1,0 +1,114 @@
+.container {
+    margin-top: calc(64px);
+    padding-inline: 50px;
+}
+
+.container h2 {
+    font-size: 48px;
+    font-family: var(--font-poppins);
+    font-weight: 500;
+    margin-block: 16px; 
+    position: relative;
+}
+
+.container h3 {
+    font-size: 32px;
+    font-family: var(--font-poppins);
+    font-weight: 500;
+    margin-block: 16px;
+    position: relative; 
+}
+
+.container h2::before, .container h3::before {
+    content: '';
+    width: 5px;
+    height: 100%;
+    position: absolute;
+    left: -10px;
+    top: 0;
+    background-color: var(--main-color-dark);
+}
+
+.container .inner-container {
+    display: flex;
+    justify-content: space-between;
+    padding-block: 30px;
+}
+
+.container .inner-container .job {
+    display: flex;
+    width: 45%;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container .inner-container .job p {
+    font-family: var(--font-inter);
+}
+
+.important {
+    font-weight: 700;
+}
+
+.container .inner-container .job span {
+    display: block;
+    font-family: var(--font-open-sans);
+    font-style: italic;
+    font-size: 24px;
+}
+
+.container .inner-container .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 45%;
+    gap: 10%;
+}
+
+.container .inner-container .info .buttons {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    gap: 10px;
+    height: 40%;
+}
+
+.container .inner-container .info .buttons a {
+    font-family: var(--font-roboto);
+    font-size: 24px;
+    height: 50px;
+    width: 30%;
+    color: var(--text-color-w);
+    border-radius: var(--border-radius-f);
+    background-color: var(--main-color-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .inner-container .info .history {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+    height: 40%;
+}
+
+.container .inner-container .info .history .time {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 60px;
+    background-color: var(--main-color-light);
+    border-radius: var(--border-radius-l);
+    color: var(--text-color-w);
+    font-size: 24px;
+    font-family: var(--font-inter);
+}
+
+.container .inner-container .info .history .time span {
+    font-size: 16px;
+    font-style: italic;
+}

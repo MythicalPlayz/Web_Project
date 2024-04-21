@@ -19,11 +19,12 @@
     <nav>
         <h2>JOB PORTAL</h2>
         <ul class="quick-links">
-            <li><a href="jobs.html">Jobs</a></li>
-            <li><a href="appied.html">History</a></li>
+            <li><a href="add_job.html">Create</a></li>
+            <li><a href="edit_job.html">Manage</a></li>
+            <li><a href="applicants.html">Applicants</a></li>
         </ul>
         <div class="user">
-            <a href="home.html" id='username'>NAME</a>
+            <a href="home.html" id="username">NAME</a>
             <div class="split"></div>
             <a href="">Log Out</a>
         </div>
@@ -51,19 +52,18 @@
                     ratione
                     similique earum magni doloribus, molestias aliquid! Quas, quasi ducimus.</p>
                 <p id="salary">Salary: 70,000$</p>
+                <p id="admin">Created by Admin</p>
             </div>
             <div class="info">
-                <div class="buttons"><a href="apply.html?id=">Apply</a></div>
-                <div class="history">
-                    <h3>History</h3>
-                    <div class="time">
-                        <p>Date</p>
-                        <span>Status: Accepted</span>
-                    </div>
+                <div class="buttons">
+                    <a href="#">Delete</a>
+                    <a href="edit_job.html?jobid=">Edit</a>
+                    <a href="applicants.html?jobid=">View Apps</a>
                 </div>
             </div>
         </div>
     </div>
 </body>
 <script src="/public/js/accounts.js" type="module"></script>
+
 </html>
