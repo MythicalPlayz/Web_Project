@@ -147,4 +147,15 @@ if (window.location.href.includes('/user/') || window.location.href.includes('/a
         title.innerHTML = "Welcome, " + name;
 }
 
+function logout(){
+    removeLocalStorage('local-account');
+    redirectTo('../login.html', 0);
+}
+
+const logoutButton = document.getElementById('logout')
+
+if (logoutButton){
+    logoutButton.addEventListener('click',logout)
+}
+
 export { addAccount , loginAccount}
