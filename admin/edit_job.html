@@ -3,7 +3,7 @@
 
 <head>
 
-  <title>Add Job</title>
+  <title>Edit Job</title>
 
 </head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,8 +37,8 @@
     </div>
       <span id="id">JobID</span>
       <div class="form-input status">
-        <label for="job-status">Job Status :</label>
-        <select id="job-status" name="job-status" class="select_border">
+        <label for="status">Job Status :</label>
+        <select id="status" name="status" class="select_border">
           <option value="open">Open</option>
           <option value="closed">Closed</option>
         </select>
@@ -56,11 +56,13 @@
         <input type="number" id="salary" required name="salary" min="0" placeholder="70000"/>
       </div>
       <div class="buttons">
-        <button id="submit">Save</button>
+        <button id="update">Save</button>
         <button id="cancel">Cancel</button>
       </div>
     </form>
   </div>
 </body>
 <script src="/public/js/accounts.js" type="module"></script>
+<script src="/public/js/jobs.js" type="module"></script>
+<script src="/public/js/jobhandler.js" type="module"></script>
 </html>
