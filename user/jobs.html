@@ -35,26 +35,12 @@
             <div class="filter">
                 <h3>FILTER APP</h3>
                 <form>
-                    <input type="text" id="name" placeholder="Job Name" name='jobname' required />
-                    <input type="text" id="xp" placeholder="Job Experience" name='xp' required />
+                    <input type="text" id="name" placeholder="Job Name" name='name' />
+                    <input type="number" id="xp" placeholder="Job Experience" name='xp' />
                     <input type="submit" value="Filter" id="filter" />
                 </form>
             </div>
-            <div class="applicants" id="applicants">
-                <div class="job">
-                    <div class="job-info">
-                        <h3 id="id">ID</h3>
-                        <h3 id="name">JOBNAME</h3>
-                    </div>
-                    <p class="company">CompanyName</p>
-                </div>
-                <div class="job">
-                    <div class="job-info">
-                        <h3 id="id">ID</h3>
-                        <h3 id="name">JOBNAME</h3>
-                    </div>
-                    <p class="company">CompanyName</p>
-                </div>
+            <div class="jobs" id="jobs">
             </div>
         </div>
     </div>
@@ -62,5 +48,6 @@
 </body>
 <script src="/public/js/accounts.js" type="module"></script>
 <script src="../public/js/redirect.js"></script>
+<script type="module" src="../public/js/filterjobs-user.js"></script>
 
 </html>

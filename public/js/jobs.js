@@ -142,47 +142,22 @@ function deleteJob(ID){
     redirectTo('home.html',0);
 }
 
+function getJobs(name = null, year = null){
+    if (year){
+        year = parseInt(year);
+    }
+    let returnedJobs = [];
+    for (let key in JobsDB){
+        const job = JobsDB[key];
+        if (!job.name.includes(name) && name){
+            continue;
+        }
+        if (job.xp < year  && year){
+            continue;
+        }
+        returnedJobs.push(job);
+    }
+    return returnedJobs;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-export {addJob, setParameters, setParametersEdit, updateJob, deleteJob}
+export {addJob, setParameters, setParametersEdit, updateJob, deleteJob , getJobs}
