@@ -1,70 +1,65 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
+<head>
 
-        <title>Edit Job</title>
+  <title>Add Job</title>
 
-    </head>
+</head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+  rel="stylesheet">
+<link rel="stylesheet" href="/public/css/root.css" />
+<link rel="stylesheet" href="/public/css/admin/add_edit_job.css" />
 
-    <body>
-      <nav>
-        <span>Job Portal</span>
-        <button>Create</button>
-        <button>Manage</button>
-        <span><a href="home.html">USERNAME</a></span>
-        <span><a href="login.html">Logout</a></span>
-      </nav>
-
-        <h1>Edit Job</h1>
-        <hr/>
-
-        <div class="container">
-            <form>
-              <div class="form-input">
-                <label for="JobID"><h4>Job ID</h4></label>
-                <input type="text" id="JobID" required name="JobID" minlength="1"/>
-              </div>
-
-              <div class="form-input">
-                <label for="JobTitle"><h4>Job Title</h4></label>
-                <input type="text" id="JobTitle" required name="JobTitle" />
-              </div>
-
-              <div class="form-input">
-                <label for="CompanyName"><h4>Company Name</h4></label>
-                <input type="text" id="CompanyName" required name="CompanyName" />
-              </div>
-
-              <div>
-                <label for="JobStatus"><h4> Job Status :</h4></label>
-                <select id="JobStatus" name="JobStatus">
-                    <option value="open">Open</option>
-                    <option value="closed">Closed</option>
-                </select>
-             </div>
-
-              <div class="form-input">
-                <label for="Description"><h4>Description</h4></label>
-                <textarea type="text" id="Description" name="Description" rows="4" cols="50"required maxlength="100"></textarea> 
-              </div>
-
-              <div class="form-input">
-                <label for="YearsofExperience"><h4>Years of Experience</h4></label>
-                <input type="text" id="YearsofExperience" required name="YearsofExperience" minlength="1"/>
-              </div>
-
-              <div class="form-input">
-                <label for="Salary"><h4>Salary</h4></label>
-                <input type="number" id="Salary" required name="Salary" min="0"/>
-              </div>
-        
-              <br />
-
-              <input type="submit" value="Apply" />
-
-            </form>
-
-    </body>
-
+<body>
+  <nav>
+    <h2>JOB PORTAL</h2>
+    <ul class="quick-links">
+      <li><a href="add_job.html">Create</a></li>
+      <li><a href="edit_job.html">Manage</a></li>
+      <li><a href="">Applicants</a></li>
+    </ul>
+    <div class="user">
+      <a href="home.html" id="username">NAME</a>
+      <div class="split"></div>
+      <a href="">Log Out</a>
+    </div>
+  </nav>
+  <div class="container">
+    <h2>Edit Job</h2>
+    <form>
+      <div class="form-input">
+      <input type="text" name="name" id="name" placeholder="Job Name" required minlength="2" />
+    </div>
+      <span id="id">JobID</span>
+      <div class="form-input status">
+        <label for="job-status">Job Status :</label>
+        <select id="job-status" name="job-status" class="select_border">
+          <option value="open">Open</option>
+          <option value="closed">Closed</option>
+        </select>
+      </div>
+      <div class="form-input">
+        <label for="xp" class="years_of_experience">Years of Experience:</label>
+        <input type="text" id="xp" required name="xp" minlength="1" placeholder="[YEAR]" />
+      </div>
+      <div class="form-input column">
+        <label for="description">Description</label>
+        <textarea type="text" id="description" name="description" rows="10" cols="50" required minlength="2"></textarea>
+      </div>
+      <div class="form-input">
+        <label for="salary">Salary (in USD): </label>
+        <input type="number" id="salary" required name="salary" min="0" placeholder="70000"/>
+      </div>
+      <div class="buttons">
+        <button id="submit">Save</button>
+        <button id="cancel">Cancel</button>
+      </div>
+    </form>
+  </div>
+</body>
+<script src="/public/js/accounts.js" type="module"></script>
 </html>
