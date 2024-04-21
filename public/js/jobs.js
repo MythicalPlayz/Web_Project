@@ -149,10 +149,10 @@ function getJobs(name = null, year = null){
     let returnedJobs = [];
     for (let key in JobsDB){
         const job = JobsDB[key];
-        if (!job.name.includes(name) && name){
+        if (!job.name.toLowerCase().includes(name.toLowerCase()) && name){
             continue;
         }
-        if (job.xp < year  && year){
+        if (job.xp <= year  && year){
             continue;
         }
         returnedJobs.push(job);
