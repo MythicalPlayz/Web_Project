@@ -88,6 +88,11 @@ function setParameters(id) {
 
     let salary = 'Salary: ' + job.salary.toLocaleString() +'$'
     document.getElementById('salary').innerHTML = salary;
+
+    let admin = document.getElementById('admin');
+    if (admin){
+        admin.innerHTML = "Created by " + job.admin;
+    }
 }
 
 function setParametersEdit(id) {
