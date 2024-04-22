@@ -1,4 +1,5 @@
 import { getJobs } from "./jobs.js";
+import { redirectTo } from "./redirect-module.js";
 
 function createElement(tag,parent,classList = null,text = null){
     let element = document.createElement(tag);
@@ -24,3 +25,10 @@ const name = urlParams.get('name');
 const year = urlParams.get('xp');
 
 loadJobs(name, year);
+
+const jobsElements = document.querySelectorAll('.job')
+for (let element of jobsElements){
+    element.addEventListener('click', function(){
+        redirectTo('details.html?jobid=' + element.getElementsByClassName('id')[0].innerHTML,0);
+    })
+}

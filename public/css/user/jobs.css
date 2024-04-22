@@ -105,6 +105,7 @@
     padding: 16px;
     font-family: var(--font-inter);
     gap: 8px;
+    cursor: pointer;
 }
 
 .container .inner-container .jobs .job .job-info {
