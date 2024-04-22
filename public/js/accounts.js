@@ -42,13 +42,10 @@ function removeLocalStorage(key) {
 var savedAccount = null, accountDB = {};
 
 function getAccountFromDB() {
-    for (let index in accountDB) {
-        let account = accountDB[index];
-        if (account.username === savedAccount.username && account.password === savedAccount.password) {
-            return account;
-        }
+    if (!exists(savedAccount.username) || accountDB[savedAccount.username].password !== savedAccount.password){
+        return null;
     }
-    return null
+    return accountDB[savedAccount.username];
 }
 
 function exists(username){
