@@ -11,15 +11,8 @@ class Job {
     }
 }
 
-class JobApplied {
-    constructor(name, jobid, time) {
-        this.name = name;
-        this.jobid = jobid;
-        this.time = time;
-    }
-}
-
-import { redirectTo } from "./redirect-module.js"
+import { redirectTo } from "./redirect-module.js";
+import { pushCompany } from './company.js'
 
 function getLocalStorage(key) {
     return localStorage.getItem(key);
@@ -63,6 +56,7 @@ function addJob(name, id, status, xp, description, salary, admin, company = null
         let job = new Job(name, id, status, xp, description, salary, admin, company);
         JobsDB[id] = job;
         saveDB();
+        pushCompany((company) ? company : admin, job);
         redirectTo('job_success.html', 0);
     } catch {
         redirectTo('job_fail.html', 0);

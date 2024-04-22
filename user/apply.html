@@ -30,9 +30,9 @@
   </nav>
   <div class="container">
     <h2>Apply</h2>
-    <p>JOBNAME</p>
+    <p id="id">JOBNAME</p>
     <!-- temporary get -->
-    <form action="submit_success.html" method="get">
+    <form onsubmit="return false;">
       <input type="text" name="fname" id="fname" placeholder="Full Name" required minlength="2" />
       <input type="email" name="email" id="email" placeholder="Email" required />
       <div class="resume">
@@ -50,5 +50,5 @@
   </div>
 </body>
 <script src="/public/js/accounts.js" type="module"></script>
-
+<script type="module" src="/public/js/validateApply.js"></script>
 </html>
