@@ -95,7 +95,6 @@ function setParameters(id) {
     }
     let anchors = document.querySelectorAll('.buttons a');
         for (let anchor of anchors){
-            console.log(anchor.getAttribute('href'));
             anchor.setAttribute('href',anchor.getAttribute('href') + job.id);
         }
 }
@@ -110,7 +109,7 @@ function setParametersEdit(id) {
     document.getElementById('id').innerHTML = job.id;
     document.getElementById('description').innerHTML = job.description;
     
-    let status = (job.status) ? 'open' : 'closed';  
+    let status = (job.status) ? 'Open' : 'Closed';  
     document.getElementById('status').value = status;
     document.getElementById('xp').value = job.xp;
     document.getElementById('salary').value = job.salary;
@@ -155,7 +154,9 @@ function getJobs(name = null, year = null){
         if (year && job.xp <= year){
             continue;
         }
-        returnedJobs.push(job);
+        if (job.status){
+            returnedJobs.push(job);
+        }
     }
     return returnedJobs;
 }

@@ -12,3 +12,10 @@ if (deleteButton){
         deleteJob(deleteButton.getAttribute('href'))
     });
 }
+else {
+    const statusJob = document.getElementById('status').innerHTML.includes('Open');
+
+    if (!statusJob){
+        document.querySelector('.buttons').remove();
+    }
+}
