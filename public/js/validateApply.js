@@ -44,7 +44,8 @@ const submitButton = document.querySelector('input[type="submit"]');
 submitButton.addEventListener('click', function(){
     const fname = document.getElementById('fname');
     const email = document.getElementById('email');
+    const user = JSON.parse(localStorage.getItem('local-account')).username;
     if (canSubmit && verifyData(fname) && verifyData(email)){
-        applyJob(getID(), JSON.parse(localStorage.getItem('local-account')).username, fname, email);
+        applyJob(getID(), user, fname, email);
     }
 });

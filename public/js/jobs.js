@@ -155,4 +155,8 @@ function getJobs(name = null, year = null){
     return returnedJobs;
 }
 
-export {addJob, setParameters, setParametersEdit, updateJob, deleteJob , getJobs}
+function getJobFromDB(jobID){
+    return getJob(jobID);
+}
+
+export {addJob, setParameters, setParametersEdit, updateJob, deleteJob , getJobs, getJobFromDB}

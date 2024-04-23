@@ -1,4 +1,5 @@
 import { redirectTo } from "./redirect-module.js";
+import {getJobFromDB} from './jobs.js'
 
 class JobApplied {
     constructor(name, fname, jobid, time, email, file = null) {
@@ -9,7 +10,9 @@ class JobApplied {
         this.status = 'pending';
         this.admin = null;
         this.email = email;
-        this.file = file;  
+        this.file = file;
+        this.company = (getJobFromDB(jobid).company) ? getJobFromDB(jobid).company : getJobFromDB(jobid).admin;  
+        this.jobname = getJobFromDB(jobid).name;
     }
 }
 
@@ -71,6 +74,14 @@ function loadApplicants(jobID = null){
     return apps;
 }
 
+function getHistory(user){
+    let arr = [];
+    let jobs = JobsAppliedDB[user];
+    for (let job of jobs){
+        arr.push(job);
+    }
+    return arr;
+}
 
 
-export {applyJob, loadApplicants}
+export {applyJob, loadApplicants, getHistory}
