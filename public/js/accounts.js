@@ -48,6 +48,10 @@ function getAccountFromDB() {
     return accountDB[savedAccount.username];
 }
 
+function getAccountInfoFromDB(username){
+    return accountDB[username];
+}
+
 function exists(username){
     return accountDB[username];
 }
@@ -164,4 +168,4 @@ if (logoutButton){
     logoutButton.addEventListener('click',logout)
 }
 
-export { addAccount , loginAccount}
+export { addAccount , loginAccount, getAccountInfoFromDB}

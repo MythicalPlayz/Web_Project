@@ -43,4 +43,4 @@ function pushCompany(name,job){
     saveDB();
 }
 
-export {pushCompany};
+export {pushCompany ,getCompany};

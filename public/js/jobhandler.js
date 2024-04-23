@@ -23,7 +23,7 @@ function add(){
         alert('Invalid Input');
         return 0;
     }
-    addJob(name, id, status, xp, desc, salary, 'ADMIN1234');
+    addJob(name, id, status, xp, desc, salary, JSON.parse(localStorage.getItem('local-account')).username);
 
 }
 function update(){
