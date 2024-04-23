@@ -1,8 +1,8 @@
 import { redirectTo } from "./redirect-module.js";
-import {getJobFromDB} from './jobs.js'
+import { getJobFromDB } from './jobs.js'
 
 class JobApplied {
-    constructor(name, fname, jobid, time, email, file = null) {
+    constructor(name, fname, jobid, time, email, file = null, index) {
         this.name = name;
         this.fname = fname;
         this.jobid = jobid;
@@ -11,8 +11,9 @@ class JobApplied {
         this.admin = null;
         this.email = email;
         this.file = file;
-        this.company = (getJobFromDB(jobid).company) ? getJobFromDB(jobid).company : getJobFromDB(jobid).admin;  
+        this.company = (getJobFromDB(jobid).company) ? getJobFromDB(jobid).company : getJobFromDB(jobid).admin;
         this.jobname = getJobFromDB(jobid).name;
+        this.index = index;
     }
 }
 
@@ -46,42 +47,56 @@ function getJob(name) {
     return JobsAppliedDB[name];
 }
 
-function applyJob(id, name, fname, email, resume = null){
+function applyJob(id, name, fname, email, resume = null) {
     try {
-    let date = Date.now();
-    let job = new JobApplied(name,fname,id,date, email, resume);
-    let data = JobsAppliedDB[name];
-    if (!data)
-        data = [];
-    data.push(job);
-    JobsAppliedDB[name] = data;
-    saveDB();
-    redirectTo('submit_success.html',0);
+        let date = Date.now();
+        let length = JobsAppliedDB[name];
+        length = (length) ? length.length : 0;
+        let job = new JobApplied(name, fname, id, date, email, resume, length);
+        let data = getHistory(name);
+        if (!data)
+            data = [];
+        data.push(job);
+        JobsAppliedDB[name] = data;
+        saveDB();
+        redirectTo('submit_success.html', 0);
     } catch {
-        redirectTo('submit_fail.html',0);
+        redirectTo('submit_fail.html', 0);
     }
 }
 
-function loadApplicants(jobID = null){
+function loadApplicants(jobID = null) {
     let apps = [];
-    for (let index in JobsAppliedDB){
+    for (let index in JobsAppliedDB) {
         let job = JobsAppliedDB[index];
-        if (jobID && !job.jobid.includes(jobID)){
-            continue;
+        for (let jobapplicant of job) {
+            if (jobID && !jobapplicant.jobid.includes(jobID)) {
+                continue;
+            }
+            apps.push(jobapplicant);
         }
-        apps.push(job);
     }
     return apps;
 }
 
-function getHistory(user){
+function getHistory(user) {
     let arr = [];
     let jobs = JobsAppliedDB[user];
-    for (let job of jobs){
+    if (!jobs)
+        return [];
+    for (let job of jobs) {
         arr.push(job);
     }
     return arr;
 }
 
+function setStatus(job, astatus, user) {
+    const index = job.index;
+    JobsAppliedDB[job.name][index].status = (astatus) ? 'accepted' : 'denied';
+    JobsAppliedDB[job.name][index].admin = user;
+    saveDB();
+    alert('Responded!');
+}
 
-export {applyJob, loadApplicants, getHistory}
+
+export { applyJob, loadApplicants, getHistory, setStatus }

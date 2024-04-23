@@ -1,7 +1,7 @@
 import { applyJob } from "./jobsapplied.js";
 
 function verifyData(element) {
-    if (element.value){
+    if (element){
         return true;
     }
     return false;
@@ -42,9 +42,12 @@ document.getElementById('id').innerHTML = getID();
 const submitButton = document.querySelector('input[type="submit"]');
 
 submitButton.addEventListener('click', function(){
-    const fname = document.getElementById('fname');
-    const email = document.getElementById('email');
+    const fname = document.getElementById('fname').value;
+    const email = document.getElementById('email').value;
     const user = JSON.parse(localStorage.getItem('local-account')).username;
+    if (!canSubmit){
+        alert('No File added');
+    }
     if (canSubmit && verifyData(fname) && verifyData(email)){
         applyJob(getID(), user, fname, email);
     }

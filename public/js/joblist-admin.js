@@ -25,7 +25,7 @@ function viewJobs(){
         createElement('h3',i,'jobname',job.name);
         createElement('p',e,'status','Created by: ' + job.admin);
         e.addEventListener('click',function() {
-            redirectTo('applicants.html?jobid=' + job.id, 0);
+            redirectTo('details.html?jobid=' + job.id, 0);
         })
     }
 }
