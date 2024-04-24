@@ -35,9 +35,30 @@ function historyHome(){
         createElement('span',e,'status','Status: ' + job.status.substr(0,1).toUpperCase() + job.status.substr(1));
     }
 }
+function historyJob(){
+    const name = JSON.parse(localStorage.getItem('local-account')).username;
+    const jobs = getHistory(name);
+    const maxN = Math.min(jobs.length,3);
+    const urlParams = new URLSearchParams(window.location.search);
+    const jobid = urlParams.get('jobid');
+    
+    for (let idx = 0; idx < maxN; idx++){
+        let job = jobs[jobs.length - 1 - idx];
+        if (job.jobid !== jobid){
+            continue;
+        }
+        let e = createElement('div',document.querySelector('.history'),'time');
+        let time = new Date(job.time);
+        createElement('p',e,'time',time.toLocaleString());
+        createElement('span',e,'status','Status: ' + job.status.substr(0,1).toUpperCase() + job.status.substr(1));
+    }
+}
 
-if (window.location.href.includes('home')){
+if (window.location.href.includes('/home')){
     historyHome();
+}
+else if (window.location.href.includes('/details')){
+    historyJob();
 }
 else{
     history();

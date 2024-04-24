@@ -41,8 +41,7 @@ function getApplicants() {
     const jobs = company.jobs;
     for (let idx in jobs) {
         const job = jobs[idx];
-        if (!filterJob(job.id))
-        {
+        if (!filterJob(job.id)) {
             continue;
         }
         const applicants = loadApplicants(job.id);
@@ -90,4 +89,38 @@ function getApplicants() {
     }
 }
 
-getApplicants();
+function getApplicantsHomme() {
+
+    const username = JSON.parse(localStorage.getItem('local-account')).username;
+    const account = getAccountInfoFromDB(username);
+    const companyname = (account.company) ? account.company : account.username;
+    const company = getCompany(companyname);
+    const jobs = company.jobs;
+    for (let idx in jobs) {
+        const job = jobs[idx];
+        if (!filterJob(job.id)) {
+            continue;
+        }
+        const applicants = loadApplicants(job.id);
+        for (let idx2 in applicants) {
+            if (idx2 == 3)
+                break;
+            let applicant = applicants[applicants.length - 1 - idx2];
+            let e = createElement('div', document.getElementById('quick-short'), 'job');
+
+            createElement('h4', e, 'id', job.id);
+            createElement('p', e, 'name', applicant.fname);
+            let typeText = applicant.status
+            let converted = typeText.substr(0, 1).toUpperCase() + typeText.substr(1);
+            createElement('span', e, 'type', 'Status: ' + converted);
+
+
+        }
+    }
+}
+
+if (location.href.includes('/home')) {
+    getApplicantsHomme();
+} else {
+    getApplicants();
+}
