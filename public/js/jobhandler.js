@@ -1,3 +1,5 @@
+import { getAccountInfoFromDB } from "./accounts.js";
+import { getCompany } from "./company.js";
 import { addJob, updateJob ,setParametersEdit} from "./jobs.js";
 import { redirectTo } from "./redirect-module.js";
 
@@ -23,7 +25,8 @@ function add(){
         alert('Invalid Input');
         return 0;
     }
-    addJob(name, id, status, xp, desc, salary, JSON.parse(localStorage.getItem('local-account')).username);
+    const adminName = JSON.parse(localStorage.getItem('local-account')).username
+    addJob(name, id, status, xp, desc, salary, adminName , getAccountInfoFromDB(adminName).company);
 
 }
 function update(){

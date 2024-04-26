@@ -145,7 +145,7 @@ function getJobs(name = null, year = null){
         if (name && !job.name.toLowerCase().includes(name.toLowerCase())){
             continue;
         }
-        if (year && job.xp <= year){
+        if (year && job.xp < year){
             continue;
         }
         if (job.status){

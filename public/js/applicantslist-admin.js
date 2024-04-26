@@ -38,6 +38,8 @@ function getApplicants() {
     const account = getAccountInfoFromDB(username);
     const companyname = (account.company) ? account.company : account.username;
     const company = getCompany(companyname);
+    if (!company)
+        return;
     const jobs = company.jobs;
     for (let idx in jobs) {
         const job = jobs[idx];
@@ -89,12 +91,14 @@ function getApplicants() {
     }
 }
 
-function getApplicantsHomme() {
+function getApplicantsHome() {
 
     const username = JSON.parse(localStorage.getItem('local-account')).username;
     const account = getAccountInfoFromDB(username);
     const companyname = (account.company) ? account.company : account.username;
     const company = getCompany(companyname);
+    if (!company)
+        return;
     const jobs = company.jobs;
     for (let idx in jobs) {
         const job = jobs[idx];
@@ -120,7 +124,7 @@ function getApplicantsHomme() {
 }
 
 if (location.href.includes('/home')) {
-    getApplicantsHomme();
+    getApplicantsHome();
 } else {
     getApplicants();
 }
