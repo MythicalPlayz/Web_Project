@@ -59,12 +59,13 @@
     color: var(--text-color-w);
     background-color: var(--main-color-normal);
     margin-top: 32px;
+    font-size: 24px;
 }
 
 .container .inner-container .main .options a {
     width: 50%;
     font-family: var(--font-roboto);
-    font-size: 24px;
+    font-size: inherit;
     height: 100%;
     color: var(--text-color-w);
     border-radius: var(--border-radius-f);
@@ -132,6 +133,7 @@
     height: 64px;
     margin-bottom: 32px;
     position: relative;
+    font-size: 24px;
 }
 
 .container .inner-container .main .form .type input {
@@ -139,7 +141,7 @@
 }
 
 .container .inner-container .main .form .type label {
-    font-size: 24px;
+    font-size: inherit;
     font-style: italic;
     font-family: var(--font-open-sans);
     color: var(--text-color-w);
