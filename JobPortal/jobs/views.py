@@ -1,7 +1,8 @@
-from django.shortcuts import render
 from django.http import HttpResponse
+from django.template import loader
 
-def members(request):
-    return HttpResponse("Hello world!")
+def jobs(request):
+    template = loader.get_template('jobs.html')
+    return HttpResponse(template.render())
 
 # Create your views here.
