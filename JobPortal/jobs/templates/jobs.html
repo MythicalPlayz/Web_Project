@@ -41,6 +41,15 @@
                 </form>
             </div>
             <div class="jobs" id="jobs">
+                {% for x in jobs %}
+                    <div class="job">
+                        <div class="job-info">
+                            <h3 class="id">{{ x.id }}</h3>
+                            <h3 class="name">{{ x.name }}</h3>
+                        </div>
+                        <p class="company">{{ x.company }}</p>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>

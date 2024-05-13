@@ -1,0 +1,22 @@
+Running Venv
+cd JobPortalVEnv/Scripts
+./activate
+cd ../../JobPortal
+
+Running Server
+py manage.py runserver
+
+Run Python Shell
+py manage.py shell
+
+
+DB Related --run
+from jobs.models import Job
+Job.objects.all()
+job = Job(id='TEST',name='Test Job',status = True, xp=1, des='This is a Test', salary = 404, admin='AdminUser', company='Test Company')
+
+Saving
+job.save()
+
+Viewing
+Job.objects.all().values()
