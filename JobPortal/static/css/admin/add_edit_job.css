@@ -107,7 +107,7 @@ input:focus, select:focus, textarea:focus{
   gap: 16px;
 }
 
-.buttons button {
+.buttons button, .buttons a {
   width: 30%;
   background-color: var(--main-color-normal);
   border: 0;
@@ -117,9 +117,12 @@ input:focus, select:focus, textarea:focus{
   transition: all 250ms ease-in-out;
   font-family: var(--font-inter);
   color: var(--text-color-w);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.buttons button:hover {
+.buttons button:hover, .buttons a:hover {
   background-color: var(--main-color-vlight);
   color: var(--text-color-b);
 }

@@ -3,7 +3,7 @@
 
 <head>
 
-  <title>Edit Job</title>
+  <title>Add Job</title>
 
 </head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,9 +11,10 @@
 <link
   href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
   rel="stylesheet">
-<link rel="stylesheet" href="/public/css/root.css" />
-<link rel="stylesheet" href="/public/css/admin/add_edit_job.css" />
-<link rel="shortcut icon" href="../public/img/icon.svg" type="image/x-icon">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/root.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/admin/add_edit_job.css' %}">
+  <link rel="shortcut icon" href="{% static 'img/icon.svg' %}" type="image/x-icon">
 
 <body>
   <nav>
@@ -30,12 +31,14 @@
     </div>
   </nav>
   <div class="container">
-    <h2>Edit Job</h2>
-    <form>
+    <h2>Add Job</h2>
+    <form onsubmit="return false;">
       <div class="form-input">
       <input type="text" name="name" id="name" placeholder="Job Name" required minlength="2" />
     </div>
-      <span id="id">JobID</span>
+    <div class="form-input">
+      <input type="text" name="id" id="id" placeholder="Job ID" required minlength="2" />
+    </div>
       <div class="form-input status">
         <label for="status">Job Status :</label>
         <select id="status" name="status" class="select_border">
@@ -56,13 +59,15 @@
         <input type="number" id="salary" required name="salary" min="0" placeholder="70000"/>
       </div>
       <div class="buttons">
-        <button id="update">Save</button>
-        <button id="cancel">Cancel</button>
+        <div class="buttons">
+          <button id="update">Save</button>
+          <a href="/home" id="cancel">Cancel</a>
+        </div>
       </div>
     </form>
   </div>
 </body>
-<script src="/public/js/accounts.js" type="module"></script>
+<!-- <script src="/public/js/accounts.js" type="module"></script>
 <script src="/public/js/jobs.js" type="module"></script>
-<script src="/public/js/jobhandler.js" type="module"></script>
+<script src="/public/js/jobhandler.js" type="module"></script> -->
 </html>
