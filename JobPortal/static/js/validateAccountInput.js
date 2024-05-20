@@ -1,12 +1,3 @@
-/**
- * Changes the requirement of an element
- * @param {Element} ID - ID of an element
- * @param {boolean} value - status of requirement
- */
-function manageRequired(ID, value) {
-    let element = document.getElementById(ID);
-    element.required = value;
-}
 
 import { addAccount, loginAccount } from "./accounts.js";
 
@@ -77,16 +68,6 @@ function initForm() {
         }
     }
     return returnedData;
-}
-
-const coadminRadio = document.getElementById('coadmin');
-if (coadminRadio) {
-    const radioButtons = document.querySelectorAll("input[type='radio']");
-    for (let radio of radioButtons) {
-        radio.addEventListener('click', function () {
-            manageRequired('company', coadminRadio.checked);
-        })
-    }
 }
 
 button.addEventListener('click', function () {
