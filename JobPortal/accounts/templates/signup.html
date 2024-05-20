@@ -40,10 +40,22 @@
           <form action="" method="post">
             {% csrf_token %}
             <input type="text" placeholder="Username" name="username" minlength="8" required />
+            {% if form.errors.username %}
+                <p>{{ form.errors.username }}</p>
+            {% endif %}
             <input type="text" id="human-verify" />
-            <input type="password" placeholder="Password" name="password" minlength="8" required />
-            <input type="password" placeholder="Confirm Password" name="con-password" minlength="8" required />
+            <input type="password" placeholder="Password" name="password1" minlength="8" required />
+            {% if form.errors.password1 %}
+                <p>{{ form.errors.password1 }}</p>
+            {% endif %}
+            <input type="password" placeholder="Confirm Password" name="password2" minlength="8" required />
+            {% if form.errors.password2 %}
+                <p>{{ form.errors.password2 }}</p>
+            {% endif %}
             <input type="email" placeholder="Email" name="email" required />
+            {% if form.errors.email %}
+                <p>{{ form.errors.email }}</p>
+            {% endif %}
             <div class="type">
               <input type="radio" name="account_type" id="user" value="user" checked />
               <label for="user">User</label>
@@ -52,6 +64,9 @@
               <div class="bg"></div>
             </div>
             <input type="text" placeholder="Company Name" name="company" id="company" />
+            {% if form.errors.company %}
+                <p>{{ form.errors.company }}</p>
+            {% endif %}
             <!-- Will Add require in the JS -->
             <input type="submit" value="Sign Up" id="signup" />
           </form>

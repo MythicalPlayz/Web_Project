@@ -36,10 +36,10 @@
           <a href="../login" class="selected">Log in</a>
           <a href="../signup">Sign Up</a>
         </div>
-        <div class="form" onsubmit="return false">
-          <form id="info">
+        <div class="form">
+          <form id="info" method="post">
+            {% csrf_token %}
             <input type="text" placeholder="Username" name="username" minlength="8" required />
-            <input type="text" id="human-verify" />
             <input type="password" placeholder="Password" name="password" minlength="8" required />
             <input type="submit" value="Log In" id="login" />
           </form>
