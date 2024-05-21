@@ -41,12 +41,10 @@ def loginP(request):
             usernameF = form.cleaned_data['username']
             passwordF = form.cleaned_data['password']
             user = authenticate(request, username=usernameF, password=passwordF)
-            print(user)
             if user is not None:
                 login(request, user)
                 return redirect('home')
             else:
-                print(usernameF, passwordF)
                 messages.error(request, 'Invalid Username or Password')
         else:
             print(form.errors)
