@@ -6,7 +6,6 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.http import require_POST
 
 @login_required(login_url='/login/')
 def home(request):  
@@ -52,7 +51,6 @@ def loginP(request):
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
 
-@require_POST
 def logoutP(request):
     logout(request)
     return redirect('login')
