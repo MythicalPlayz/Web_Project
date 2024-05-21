@@ -20,3 +20,6 @@ job.save()
 
 Viewing
 Job.objects.all().values()
+
+ python manage.py makemigrations 
+ python manage.py migrate

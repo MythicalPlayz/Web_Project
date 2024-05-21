@@ -18,6 +18,32 @@
 </head>
 
 <body>
+    {%if type%}
+    <nav>
+        <h2>JOB PORTAL</h2>
+        <ul class="quick-links">
+            <li><a href="add_job.html">Create</a></li>
+            <li><a href="list_jobs.html">Job List</a></li>
+            <li><a href="applicants.html">Applicants</a></li>
+        </ul>
+        <div class="user">
+            <a href="home.html" id="username">{{username}}</a>
+            <div class="split"></div>
+            <a href="" id='logout'>Log Out</a>
+        </div>
+    </nav>
+    <div class="container">
+        <h2 id="welcome">Welcome, {{username}}!</h2>
+        <div class="quick-link">
+            <a href="add_job.html">Create Job</a>
+            <a href="list_jobs.html">Job List</a>
+        </div>
+        <h3>Application Received</h3>
+        <div class="quick-short" id="quick-short">
+        </div>
+        <a href="list_jobs.html">Load More</a>
+    </div>
+    {%else%}
     <nav>
         <h2>JOB PORTAL</h2>
         <ul class="quick-links">
@@ -25,13 +51,13 @@
             <li><a href="applied.html">History</a></li>
         </ul>
         <div class="user">
-            <a href="home.html" id='username'>NAME</a>
+            <a href="home.html" id='username'>{{ user.username }}</a>
             <div class="split"></div>
             <a href="" id='logout'>Log Out</a>
         </div>
     </nav>
     <div class="container">
-        <h2 id="welcome">Welcome, USERNAME!</h2>
+        <h2 id="welcome">Welcome, {{ username }}!</h2>
         <div class="quick-link">
             <a href="jobs.html">View Jobs</a>
             <a href="applied.html">History</a>
@@ -41,6 +67,7 @@
         </div>
         <a href="applied.html">See More</a>
     </div>
+    {%endif%}
 </body>
 <!-- <script src="/public/js/accounts.js" type="module"></script>
 <script type="module" src="/public/js/history.js"></script> -->
