@@ -1,7 +1,9 @@
 from django.http import HttpResponse, Http404
 from django.template import loader
 from .models import Job
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='/login/')
 def jobs(request):
     jobsobject = Job.objects.all().values()
     template = loader.get_template('jobs.html')
@@ -10,6 +12,7 @@ def jobs(request):
     }
     return HttpResponse(template.render(prameters, request))
 
+@login_required(login_url='/login/')
 def details(request, id):
     try:
         jobobject = Job.objects.get(id=id)
@@ -22,6 +25,7 @@ def details(request, id):
     }
     return HttpResponse(template.render(prameters, request))
 
+@login_required(login_url='/login/')
 def add(request):
     if request.method == 'GET':
         template = loader.get_template('add_job.html')
@@ -32,6 +36,7 @@ def add(request):
         return HttpResponse("UNSUPPORTED METHOD")
     # POST REQUEST
 
+@login_required(login_url='/login/')
 def edit(request, id):
     if request.method == 'GET':
         try:
@@ -50,6 +55,7 @@ def edit(request, id):
         return HttpResponse("UNSUPPORTED METHOD")
     # POST REQUEST
 
+@login_required(login_url='/login/')
 def delete(request, id):
     if request.method == 'DELETE':
         try:
