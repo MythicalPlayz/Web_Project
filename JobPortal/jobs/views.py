@@ -32,8 +32,10 @@ def details(request, id):
     prameters = {
         'job': jobobject,
         'username': user.username,
-        'type': user.account_type
+        'type': user.account_type,
+        'company': user.company
     }
+    print(jobobject.company,user.company)
     return HttpResponse(template.render(prameters, request))
 
 @login_required(login_url='/login/')
@@ -134,13 +136,24 @@ def delete(request, id):
     
     if request.method == 'DELETE':
         try:
-            jobobject = Job.objects.get(id=id)
-        except Job.DoesNotExist:
-            raise Http404("Job does not exist")
-        # DELETE REQUEST
+            try:
+                jobobject = Job.objects.get(id=id)
+            except Job.DoesNotExist:
+                raise Http404("Job does not exist")
+            if jobobject.company != user.company:
+                    return HttpResponse('Unauthorized', status=401)
+            jobobject.delete()
+            companyid = Company.objects.get(jobid=id)
+            companyid.delete()
+            #Delete Applicants
+            return redirect('/jobs/delete/success/')
+        except:
+            return redirect('/jobs/fail/')
+
     else:
         return HttpResponse("UNSUPPORTED METHOD")
 
+@csrf_exempt
 def fail(request):
     user = request.user
     prameters = {
@@ -149,6 +162,7 @@ def fail(request):
     template = loader.get_template('job_fail.html')
     return HttpResponse(template.render(prameters, request))
 
+@csrf_exempt
 def create(request):
     user = request.user
     prameters = {
@@ -157,6 +171,7 @@ def create(request):
     template = loader.get_template('job_create.html')
     return HttpResponse(template.render(prameters, request))
 
+@csrf_exempt
 def modify(request):
     user = request.user
     prameters = {
@@ -165,6 +180,7 @@ def modify(request):
     template = loader.get_template('job_edit.html')
     return HttpResponse(template.render(prameters, request))
 
+@csrf_exempt
 def free(request):
     user = request.user
     prameters = {

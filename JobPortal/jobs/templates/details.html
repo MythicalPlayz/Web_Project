@@ -60,16 +60,16 @@
                 <h3>Description</h3>
                 <p id="description">{{ job.des }}</p>
                 <p id="salary">Salary: {{ job.salary }}$</p>
-                {% if type and job.admin == username %}
-                <p id="admin">{{job.admin}}</p>
+                {% if type and job.company == company %}
+                <p id="admin">Created by: {{job.admin}}</p>
                 {% endif %}
             </div>
-            {% if type and job.admin == username %}
+            {% if type and job.company == company %}
             <div class="info">
                 <div class="buttons">
-                    <a href="/jobs/details/{{ job.id }}/delete" id="delete">Delete</a>
+                    <button id="delete">Delete</button>
                     <a href="/jobs/details/{{ job.id }}/edit">Edit</a>
-                    <a href="/jobs/details/{{ job.id }}/applicants">View Apps</a>
+                    <a href="/jobs/applicants/{{ job.id }}">View Apps</a>
                 </div>
             </div>
             {% elif type == 0 %}
@@ -88,4 +88,7 @@
 <!-- <script src="/public/js/accounts.js" type="module"></script>
 <script src="/public/js/getjob.js" type="module"></script>
 <script type="module" src="/public/js/history.js"></script> -->
+{% if type and job.company == company %}
+    <script src="{% static 'js/admin-job.js' %}"></script>
+{% endif %} 
 </html>

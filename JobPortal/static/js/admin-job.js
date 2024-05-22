@@ -20,4 +20,26 @@ function add() {
     xhr.send(info);
 }
 
-document.getElementById('add').addEventListener('click',add)
+const addButton = document.getElementById('add')
+if (addButton){
+    addButton.addEventListener('click',add)
+}
+
+function deleteJob() {
+    xhr.open("DELETE", window.location.href + 'delete');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                window.location.href = '/jobs/delete/success/';
+            } else {
+                window.location.href = '/jobs/fail/';
+            }
+        }
+    };
+    xhr.send();
+}
+
+const deleteButton = document.getElementById('delete')
+if (deleteButton){
+    deleteButton.addEventListener('click', deleteJob)
+}
