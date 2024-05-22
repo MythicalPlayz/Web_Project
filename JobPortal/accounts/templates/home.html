@@ -27,7 +27,7 @@
         <h2>JOB PORTAL</h2>
         <ul class="quick-links">
             <li><a href="/jobs/add/">Create</a></li>
-            <li><a href="list_jobs.html">Job List</a></li>
+            <li><a href="/joblist/">Job List</a></li>
             <li><a href="applicants.html">Applicants</a></li>
         </ul>
         <div class="user">
@@ -40,19 +40,19 @@
         <h2 id="welcome">Welcome, {{username}}!</h2>
         <div class="quick-link">
             <a href="/jobs/add/">Create Job</a>
-            <a href="list_jobs.html">Job List</a>
+            <a href="/joblist/">Job List</a>
         </div>
         <h3>Application Received</h3>
         <div class="quick-short" id="quick-short">
         </div>
-        <a href="list_jobs.html">Load More</a>
+        <a href="/joblist/">Load More</a>
     </div>
     {%else%}
     <nav>
         <h2>JOB PORTAL</h2>
         <ul class="quick-links">
-            <li><a href="jobs.html">Jobs</a></li>
-            <li><a href="applied.html">History</a></li>
+            <li><a href="/jobs/">Jobs</a></li>
+            <li><a href="/history/">History</a></li>
         </ul>
         <div class="user">
             <a href="/home/" id='username'>{{ user.username }}</a>
@@ -63,13 +63,13 @@
     <div class="container">
         <h2 id="welcome">Welcome, {{ username }}!</h2>
         <div class="quick-link">
-            <a href="jobs.html">View Jobs</a>
-            <a href="applied.html">History</a>
+            <a href="/jobs/">View Jobs</a>
+            <a href="/history/">History</a>
         </div>
         <h3>Jobs Applied</h3>
         <div class="quick-short">
         </div>
-        <a href="applied.html">See More</a>
+        <a href="/history/">See More</a>
     </div>
     {%endif%}
 </body>

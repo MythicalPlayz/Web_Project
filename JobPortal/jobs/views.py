@@ -268,3 +268,16 @@ def history(request):
     }
     template = loader.get_template('history.html')
     return HttpResponse(template.render(prameters, request))
+
+@login_required(login_url='/login/')
+def joblist(request):
+    user = request.user
+    if not isadmin(user.account_type):
+        return HttpResponse('Unauthorized', status=401)
+    jobsobjects = Job.objects.filter(company=user.company).order_by('id')
+    prameters = {
+        'jobs': jobsobjects,
+        'username': user.username,
+    }
+    template = loader.get_template('list_jobs.html')
+    return HttpResponse(template.render(prameters, request))
