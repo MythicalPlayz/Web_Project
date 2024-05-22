@@ -2,6 +2,8 @@ from django.http import HttpResponse, Http404
 from django.template import loader
 from .models import Job
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import redirect, render
 
 def isadmin(type):
     return type
@@ -35,6 +37,7 @@ def details(request, id):
     return HttpResponse(template.render(prameters, request))
 
 @login_required(login_url='/login/')
+@csrf_exempt
 def add(request):
     user = request.user
     if not isadmin(user.account_type):
@@ -44,12 +47,31 @@ def add(request):
         template = loader.get_template('add_job.html')
         return HttpResponse(template.render())
     elif request.method == 'POST':
-        pass
+        try:
+            id = request.POST['id']
+            name = request.POST['name']
+            status = False
+            if request.POST['status'] == 'Open':
+                status = True
+            xp = request.POST['xp']
+            desc = request.POST['description']
+            salary = request.POST['salary']
+            admin = user.username
+            company = user.company
+            
+            job = Job(id,name,status,xp,desc,salary,admin,company)
+            job.save()
+            return redirect('/jobs/success/')
+        except:
+
+            return redirect('/jobs/fail/')
+            pass
     else:
         return HttpResponse("UNSUPPORTED METHOD")
     # POST REQUEST
 
 @login_required(login_url='/login/')
+@csrf_exempt
 def edit(request, id):
     user = request.user
     if not isadmin(user.account_type):
@@ -73,6 +95,7 @@ def edit(request, id):
     # POST REQUEST
 
 @login_required(login_url='/login/')
+@csrf_exempt
 def delete(request, id):
     user = request.user
     if not isadmin(user.account_type):
@@ -86,3 +109,11 @@ def delete(request, id):
         # DELETE REQUEST
     else:
         return HttpResponse("UNSUPPORTED METHOD")
+
+def fail(request):
+    template = loader.get_template('job_fail.html')
+    return HttpResponse(template.render())
+
+def success(request):
+    template = loader.get_template('job_success.html')
+    return HttpResponse(template.render())

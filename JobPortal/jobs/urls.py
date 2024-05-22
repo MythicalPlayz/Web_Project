@@ -7,6 +7,6 @@ urlpatterns = [
     path('jobs/add/', views.add, name='add'),
     path('jobs/details/<str:id>/edit/', views.edit, name='edit'),
     path('jobs/details/<str:id>/delete/', views.delete, name='delete'),
-
-    #TODO: Add Success/Fail
+    path('jobs/fail/', views.fail, name='fail'),
+    path('jobs/success/', views.success, name='success'),
 ]

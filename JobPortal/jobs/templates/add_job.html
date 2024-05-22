@@ -32,7 +32,7 @@
   </nav>
   <div class="container">
     <h2>Add Job</h2>
-    <form onsubmit="return false;">
+    <form method="post">
       <div class="form-input">
       <input type="text" name="name" id="name" placeholder="Job Name" required minlength="2" />
     </div>
@@ -60,8 +60,8 @@
       </div>
       <div class="buttons">
         <div class="buttons">
-          <button id="update">Save</button>
-          <a href="/home" id="cancel">Cancel</a>
+          <button id="submit">Save</button>
+          <a href="/home/" id="cancel">Cancel</a>
         </div>
       </div>
     </form>
@@ -70,4 +70,5 @@
 <!-- <script src="/public/js/accounts.js" type="module"></script>
 <script src="/public/js/jobs.js" type="module"></script>
 <script src="/public/js/jobhandler.js" type="module"></script> -->
+<script src="{% static 'js/admin-job.js' %}"></script>
 </html>
