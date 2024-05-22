@@ -4,7 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%if type%}
+    <title>Admin Home</title>
+    {%else%}
     <title>User Home</title>
+    {%endif%}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -22,12 +26,12 @@
     <nav>
         <h2>JOB PORTAL</h2>
         <ul class="quick-links">
-            <li><a href="add_job.html">Create</a></li>
+            <li><a href="/jobs/add/">Create</a></li>
             <li><a href="list_jobs.html">Job List</a></li>
             <li><a href="applicants.html">Applicants</a></li>
         </ul>
         <div class="user">
-            <a href="home.html" id="username">{{username}}</a>
+            <a href="/home/" id="username">{{username}}</a>
             <div class="split"></div>
             <a href="/logout/" id='logout'>Log Out</a>
         </div>
@@ -35,7 +39,7 @@
     <div class="container">
         <h2 id="welcome">Welcome, {{username}}!</h2>
         <div class="quick-link">
-            <a href="add_job.html">Create Job</a>
+            <a href="/jobs/add/">Create Job</a>
             <a href="list_jobs.html">Job List</a>
         </div>
         <h3>Application Received</h3>
@@ -51,7 +55,7 @@
             <li><a href="applied.html">History</a></li>
         </ul>
         <div class="user">
-            <a href="home.html" id='username'>{{ user.username }}</a>
+            <a href="/home/" id='username'>{{ user.username }}</a>
             <div class="split"></div>
             <a href="/logout/" id='logout'>Log Out</a>
         </div>

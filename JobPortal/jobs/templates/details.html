@@ -17,6 +17,21 @@
 </head>
 
 <body>
+    {% if type %}
+    <nav>
+        <h2>JOB PORTAL</h2>
+        <ul class="quick-links">
+            <li><a href="/jobs/add/">Create</a></li>
+            <li><a href="list_jobs.html">Job List</a></li>
+            <li><a href="applicants.html">Applicants</a></li>
+        </ul>
+        <div class="user">
+            <a href="/home/" id="username">{{username}}</a>
+            <div class="split"></div>
+            <a href="/logout/" id='logout'>Log Out</a>
+        </div>
+    </nav>
+    {% else %}
     <nav>
         <h2>JOB PORTAL</h2>
         <ul class="quick-links">
@@ -24,11 +39,12 @@
             <li><a href="applied.html">History</a></li>
         </ul>
         <div class="user">
-            <a href="home.html" id='username'>NAME</a>
+            <a href="/home/" id='username'>{{username}}</a>
             <div class="split"></div>
-            <a href="" id='logout'>Log Out</a>
+            <a href="/logout/" id='logout'>Log Out</a>
         </div>
     </nav>
+    {% endif %}
     <div class="container">
         <div class="inner-container">
             <div class="job">
@@ -44,7 +60,19 @@
                 <h3>Description</h3>
                 <p id="description">{{ job.des }}</p>
                 <p id="salary">Salary: {{ job.salary }}$</p>
+                {% if type and job.admin == username %}
+                <p id="admin">{{job.admin}}</p>
+                {% endif %}
             </div>
+            {% if type and job.admin == username %}
+            <div class="info">
+                <div class="buttons">
+                    <a href="" id="delete">Delete</a>
+                    <a href="edit_job.html?jobid=">Edit</a>
+                    <a href="applicants.html?jobid=">View Apps</a>
+                </div>
+            </div>
+            {% elif type == 0 %}
             <div class="info">
                 {% if job.status %}
                 <div class="buttons"><a href="apply">Apply</a></div>
@@ -53,6 +81,7 @@
                     <h3>History</h3>
                 </div>
             </div>
+            {% endif %}
         </div>
     </div>
 </body>
