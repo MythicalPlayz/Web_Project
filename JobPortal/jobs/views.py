@@ -1,6 +1,6 @@
 from django.http import HttpResponse, Http404
 from django.template import loader
-from .models import Job, Company
+from .models import Job, Company, Applicant
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import redirect, render
@@ -35,7 +35,6 @@ def details(request, id):
         'type': user.account_type,
         'company': user.company
     }
-    print(jobobject.company,user.company)
     return HttpResponse(template.render(prameters, request))
 
 @login_required(login_url='/login/')
@@ -153,6 +152,7 @@ def delete(request, id):
     else:
         return HttpResponse("UNSUPPORTED METHOD")
 
+@login_required(login_url='/login/')
 @csrf_exempt
 def fail(request):
     user = request.user
@@ -171,6 +171,7 @@ def create(request):
     template = loader.get_template('job_create.html')
     return HttpResponse(template.render(prameters, request))
 
+@login_required(login_url='/login/')
 @csrf_exempt
 def modify(request):
     user = request.user
@@ -180,6 +181,7 @@ def modify(request):
     template = loader.get_template('job_edit.html')
     return HttpResponse(template.render(prameters, request))
 
+@login_required(login_url='/login/')
 @csrf_exempt
 def free(request):
     user = request.user
@@ -187,4 +189,65 @@ def free(request):
         'username': user.username,
     }
     template = loader.get_template('job_delete.html')
+    return HttpResponse(template.render(prameters, request))
+
+@login_required(login_url='/login/')
+@csrf_exempt
+def apply(request, id):
+    user = request.user
+    if isadmin(user.account_type):
+        return HttpResponse('Unauthorized', status=401)
+    
+    try:
+        jobobject = Job.objects.get(id=id)
+    except Job.DoesNotExist:
+        raise Http404("Job does not exist")
+    
+    
+    if request.method == 'GET':
+        template = loader.get_template('apply.html')
+        parameters = {
+            'job': jobobject,
+            'username': user.username
+        }
+        return HttpResponse(template.render(parameters, request))
+    elif request.method == 'POST':
+        try:
+            username = user.username
+            jobid = id
+            fullname = request.POST.get('fname')
+            email = request.POST.get('email')
+            resume = request.FILES.get('resume')
+            print(fullname)
+            applicant = Applicant(
+                username=username,
+                jobid=jobid,
+                fullname=fullname,
+                email=email,
+                resume=resume
+            )
+            applicant.save()
+            return redirect('/jobs/apply/success/')
+        except:
+            return redirect('/jobs/apply/fail/')
+        
+
+@login_required(login_url='/login/')
+@csrf_exempt
+def applysuccess(request):
+    user = request.user
+    prameters = {
+        'username': user.username,
+    }
+    template = loader.get_template('submit_success.html')
+    return HttpResponse(template.render(prameters, request))
+
+@login_required(login_url='/login/')
+@csrf_exempt
+def applyfail(request):
+    user = request.user
+    prameters = {
+        'username': user.username,
+    }
+    template = loader.get_template('submit_fail.html')
     return HttpResponse(template.render(prameters, request))
