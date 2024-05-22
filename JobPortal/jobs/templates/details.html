@@ -67,9 +67,9 @@
             {% if type and job.admin == username %}
             <div class="info">
                 <div class="buttons">
-                    <a href="" id="delete">Delete</a>
+                    <a href="/jobs/details/{{ job.id }}/delete" id="delete">Delete</a>
                     <a href="/jobs/details/{{ job.id }}/edit">Edit</a>
-                    <a href="applicants.html?jobid=">View Apps</a>
+                    <a href="/jobs/details/{{ job.id }}/applicants">View Apps</a>
                 </div>
             </div>
             {% elif type == 0 %}

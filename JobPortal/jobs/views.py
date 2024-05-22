@@ -67,7 +67,7 @@ def add(request):
 
             comp = Company(id,company)
             comp.save()
-            return redirect('/jobs/success/')
+            return redirect('/jobs/add/success/')
         except:
             return redirect('/jobs/fail/')
     else:
@@ -117,7 +117,7 @@ def edit(request, id):
             jobobject.desc = desc
             jobobject.salary = salary
             jobobject.save()
-            return redirect('/jobs/success/')
+            return redirect('/jobs/edit/success/')
         except:
             return redirect('/jobs/fail/')
 
@@ -149,10 +149,26 @@ def fail(request):
     template = loader.get_template('job_fail.html')
     return HttpResponse(template.render(prameters, request))
 
-def success(request):
+def create(request):
     user = request.user
     prameters = {
         'username': user.username,
     }
-    template = loader.get_template('job_success.html')
+    template = loader.get_template('job_create.html')
+    return HttpResponse(template.render(prameters, request))
+
+def modify(request):
+    user = request.user
+    prameters = {
+        'username': user.username,
+    }
+    template = loader.get_template('job_edit.html')
+    return HttpResponse(template.render(prameters, request))
+
+def free(request):
+    user = request.user
+    prameters = {
+        'username': user.username,
+    }
+    template = loader.get_template('job_delete.html')
     return HttpResponse(template.render(prameters, request))
