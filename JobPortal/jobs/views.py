@@ -1,6 +1,6 @@
 from django.http import HttpResponse, Http404
 from django.template import loader
-from .models import Job
+from .models import Job, Company
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import redirect, render
@@ -64,6 +64,9 @@ def add(request):
             
             job = Job(id,name,status,xp,desc,salary,admin,company)
             job.save()
+
+            comp = Company(id,company)
+            comp.save()
             return redirect('/jobs/success/')
         except:
 

@@ -12,12 +12,11 @@ class Job(models.Model):
     company = models.CharField(max_length=255)  
 
 class Company(models.Model):
-    name = models.CharField(max_length=255)
-    jobid = models.CharField(max_length=5)
-
     class Meta:
-        # Define a composite key
         unique_together = ('name', 'jobid')
+        
+    jobid = models.CharField(max_length=5, primary_key=True)
+    name = models.CharField(max_length=255)
 
 
 class Applicant(models.Model):
