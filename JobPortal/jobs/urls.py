@@ -16,6 +16,8 @@ urlpatterns = [
     path('jobs/details/<str:id>/apply/', views.apply, name='apply'),
     path('jobs/apply/success/', views.applysuccess, name='success apply'),
     path('jobs/apply/fail/', views.applyfail, name='fail apply'),
+
+    path('history/', views.history ,name='history')
 ]
 
 

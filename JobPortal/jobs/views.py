@@ -144,7 +144,7 @@ def delete(request, id):
             jobobject.delete()
             companyid = Company.objects.get(jobid=id)
             companyid.delete()
-            #Delete Applicants
+            Applicant.objects.filter(jobid=id).delete()
             return redirect('/jobs/delete/success/')
         except:
             return redirect('/jobs/fail/')
@@ -250,4 +250,21 @@ def applyfail(request):
         'username': user.username,
     }
     template = loader.get_template('submit_fail.html')
+    return HttpResponse(template.render(prameters, request))
+
+@login_required(login_url='/login/')
+def history(request):
+    user = request.user
+    if isadmin(user.account_type):
+        return HttpResponse('Unauthorized', status=401)
+    applied = Applicant.objects.filter(username=user.username).order_by('-time')
+    names = {}
+    for x in applied:
+        jobid = x.jobid
+        x.name = Job.objects.get(id=jobid).name
+    prameters = {
+        'applied': applied,
+        'username': user.username,
+    }
+    template = loader.get_template('history.html')
     return HttpResponse(template.render(prameters, request))
