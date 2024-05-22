@@ -69,9 +69,7 @@ def add(request):
             comp.save()
             return redirect('/jobs/success/')
         except:
-
             return redirect('/jobs/fail/')
-            pass
     else:
         return HttpResponse("UNSUPPORTED METHOD")
     # POST REQUEST
@@ -89,13 +87,40 @@ def edit(request, id):
         except Job.DoesNotExist:
             raise Http404("Job does not exist")
         
+        if jobobject.company != user.company:
+            return HttpResponse('Unauthorized', status=401)
+
         template = loader.get_template('edit_job.html')
         prameters = {
             'job': jobobject,
         }
         return HttpResponse(template.render(prameters, request))
     elif request.method == 'POST':
-        pass
+        try:
+            jobobject = Job.objects.get(id=id)
+        except Job.DoesNotExist:
+            raise Http404("Job does not exist")
+        try:
+            name = request.POST['name']
+            status = False
+            if request.POST['status'] == 'Open':
+                status = True
+            xp = request.POST['xp']
+            desc = request.POST['description']
+            salary = request.POST['salary']
+
+            if jobobject.company != user.company:
+                return HttpResponse('Unauthorized', status=401)
+            jobobject.name = name
+            jobobject.status = status
+            jobobject.xp = xp
+            jobobject.desc = desc
+            jobobject.salary = salary
+            jobobject.save()
+            return redirect('/jobs/success/')
+        except:
+            return redirect('/jobs/fail/')
+
     else:
         return HttpResponse("UNSUPPORTED METHOD")
     # POST REQUEST
