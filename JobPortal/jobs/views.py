@@ -45,7 +45,10 @@ def add(request):
     
     if request.method == 'GET':
         template = loader.get_template('add_job.html')
-        return HttpResponse(template.render())
+        parameters = {
+            'username': user.username
+        }
+        return HttpResponse(template.render(parameters, request))
     elif request.method == 'POST':
         try:
             id = request.POST['id']
@@ -111,9 +114,17 @@ def delete(request, id):
         return HttpResponse("UNSUPPORTED METHOD")
 
 def fail(request):
+    user = request.user
+    prameters = {
+        'username': user.username,
+    }
     template = loader.get_template('job_fail.html')
-    return HttpResponse(template.render())
+    return HttpResponse(template.render(prameters, request))
 
 def success(request):
+    user = request.user
+    prameters = {
+        'username': user.username,
+    }
     template = loader.get_template('job_success.html')
-    return HttpResponse(template.render())
+    return HttpResponse(template.render(prameters, request))
