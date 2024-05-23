@@ -281,3 +281,24 @@ def joblist(request):
     }
     template = loader.get_template('list_jobs.html')
     return HttpResponse(template.render(prameters, request))
+
+@login_required(login_url='/login/')
+def applicants(request, id):
+    try:
+        jobobject = Job.objects.get(id=id)
+    except Job.DoesNotExist:
+        raise Http404("Job does not exist")
+    user = request.user
+    if not isadmin(user.account_type):
+        return HttpResponse('Unauthorized', status=401)
+    
+    applicants = Applicant.objects.filter(jobid=id).order_by('-time')
+    for x in applicants:
+        x.name = jobobject.name
+    prameters = {
+        'applicants': applicants,
+        'username': user.username,
+        'job': jobobject
+    }
+    template = loader.get_template('applicants.html')
+    return HttpResponse(template.render(prameters, request))

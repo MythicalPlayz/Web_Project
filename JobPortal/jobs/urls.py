@@ -18,7 +18,8 @@ urlpatterns = [
     path('jobs/apply/fail/', views.applyfail, name='fail apply'),
 
     path('history/', views.history ,name='history'),
-    path('joblist/', views.joblist, name='joblist')
+    path('joblist/', views.joblist, name='joblist'),
+    path('jobs/applicants/<str:id>/', views.applicants, name='applicants'),
 ]
 
 
