@@ -34,7 +34,7 @@
         <div class="inner-container">
             <div class="filter">
                 <h3>FILTER APP</h3>
-                <form>
+                <form id="filterForm">
                     <input type="text" id="name" placeholder="Job Name" name='name' />
                     <input type="number" id="xp" placeholder="Job Experience" name='xp' />
                     <input type="submit" value="Filter" id="filter" />
@@ -57,4 +57,5 @@
     </div>
     </div>
 </body>
+<script src="{% static 'js/ajax-jobs.js' %}"></script>
 </html>
