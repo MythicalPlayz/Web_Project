@@ -33,7 +33,7 @@
     <h2>Jobs Applied (History)</h2>
     <div class="list" id="jobs">
       {% for x in applied %}
-        <div class="job">
+        <div class="job" id="applicant-{{x.id}}">
           <div class="info">
             <h3 class="jobid">{{x.jobid}}</h3>
             <h3 class="jobname">{{x.name}}</h3>
