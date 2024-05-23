@@ -39,20 +39,19 @@
         <div class="form">
           <form action="" method="post">
             {% csrf_token %}
-            <input type="text" placeholder="Username" name="username" minlength="8" required />
+            <input type="text" placeholder="Username" name="username" minlength="8" required id="username"/>
             {% if form.errors.username %}
                 <p>{{ form.errors.username }}</p>
             {% endif %}
-            <input type="text" id="human-verify" />
-            <input type="password" placeholder="Password" name="password1" minlength="8" required />
+            <input type="password" placeholder="Password" name="password1" minlength="8" required id="password1"/>
             {% if form.errors.password1 %}
                 <p>{{ form.errors.password1 }}</p>
             {% endif %}
-            <input type="password" placeholder="Confirm Password" name="password2" minlength="8" required />
+            <input type="password" placeholder="Confirm Password" name="password2" minlength="8" required id="password2"/>
             {% if form.errors.password2 %}
                 <p>{{ form.errors.password2 }}</p>
             {% endif %}
-            <input type="email" placeholder="Email" name="email" required />
+            <input type="email" placeholder="Email" name="email" required id="email"/>
             {% if form.errors.email %}
                 <p>{{ form.errors.email }}</p>
             {% endif %}
@@ -63,7 +62,7 @@
               <label for="coadmin">Admin</label>
               <div class="bg"></div>
             </div>
-            <input type="text" placeholder="Company Name" name="company" id="company" />
+            <input type="text" placeholder="Company Name" name="company" id="company" minlength="2"/>
             {% if form.errors.company %}
                 <p>{{ form.errors.company }}</p>
             {% endif %}
@@ -89,7 +88,5 @@ if (coadminRadio) {
 
 }
 </script>
-<!-- <script type="module" src="public/js/redirect-module.js"></script>
-<script src="public/js/accounts.js" type="module"></script>
-<script src="public/js/validateAccountInput.js" type="module"></script> -->
+<script src="{% static 'js/validateAccount.js' %}"></script>
 </html>

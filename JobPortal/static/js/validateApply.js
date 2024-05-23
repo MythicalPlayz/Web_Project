@@ -1,5 +1,3 @@
-import { applyJob } from "./jobsapplied.js";
-
 function verifyData(element) {
     if (element){
         return true;
@@ -30,13 +28,6 @@ fileButton.addEventListener('change', function(event) {
     document.querySelector('label[for="resume"]').innerHTML = file.name;
 })
 
-
-function getID(){
-    const urlParams = new URLSearchParams(window.location.search);
-    const jobid = urlParams.get('jobid');
-    return jobid;
-}
-
 document.getElementById('id').innerHTML = getID();
 
 const submitButton = document.querySelector('input[type="submit"]');
@@ -44,11 +35,10 @@ const submitButton = document.querySelector('input[type="submit"]');
 submitButton.addEventListener('click', function(){
     const fname = document.getElementById('fname').value;
     const email = document.getElementById('email').value;
-    const user = JSON.parse(localStorage.getItem('local-account')).username;
     if (!canSubmit){
         alert('No File added');
     }
-    if (canSubmit && verifyData(fname) && verifyData(email)){
-        applyJob(getID(), user, fname, email);
+    if (!verifyData(fname) && !verifyData(email)){
+        alert('Missing Info');
     }
 });
