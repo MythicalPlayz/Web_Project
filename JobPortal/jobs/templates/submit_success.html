@@ -34,7 +34,8 @@
         <h4>You will be redirected shortly</h4>
     </div>
 </body>
-    <!-- <script src="/public/js/accounts.js" type="module"></script>
-    <script src="../public/js/redirect.js"></script>
-    <script>redirectTo('home.html',5000);</script> -->
+<script src="{% static 'js/redirect.js' %}"></script>
+<script>
+    redirectTo('/home/',5000);
+</script> 
 </html>

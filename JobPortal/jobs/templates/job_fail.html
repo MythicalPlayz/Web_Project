@@ -35,5 +35,8 @@
         <h4>Please try again at a later time<br/>You will be redirected shortly</h4>
     </div>
 </body>
-<!-- Redirect -->
+<script src="{% static 'js/redirect.js' %}"></script>
+    <script>
+        redirectTo('/home/',5000);
+    </script> 
 </html>

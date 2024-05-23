@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Application Success</title>
+    <title>Application Fail</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -34,11 +34,8 @@
         <h4>Please try again at a later time<br/>You will be redirected shortly</h4>
     </div>
 </body>
-    <!-- <script src="/public/js/accounts.js" type="module"></script>
-    <script src="../public/js/redirect.js"></script>
+    <script src="{% static 'js/redirect.js' %}"></script>
     <script>
-        if (!checkIfSignedIn())
-            redirectTo('../login.html',0);
-        redirectTo('home.html',5000);
-    </script> -->
+        redirectTo('/home/',5000);
+    </script> 
 </html>
