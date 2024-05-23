@@ -1,4 +1,11 @@
 from django.db import models
+import uuid
+import os
+
+def generate_unique_filename(instance, filename):
+    ext = filename.split('.')[-1]
+    unique_filename = f"{uuid.uuid4().hex}.{ext}"
+    return os.path.join('resumes/', unique_filename)
 
 # Create your models here.
 class Job(models.Model):
@@ -27,7 +34,7 @@ class Applicant(models.Model):
     email = models.EmailField()
     admin = models.CharField(max_length=255, null=True, default=None)
     status = models.CharField(max_length=20 ,default='pending')
-    resume = models.FileField(upload_to='resumes/')
+    resume = models.FileField(upload_to=generate_unique_filename)
 
     class Meta:
         # Define a composite key
