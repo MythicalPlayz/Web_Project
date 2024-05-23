@@ -1,4 +1,5 @@
 const form = document.getElementById('filterForm');
+const jobsContainer = document.getElementById('jobs');
 
 function getFilter(){
     var name = document.getElementById('name').value;
@@ -31,9 +32,8 @@ form.addEventListener('submit', function(event) {
 })
 
 function reloadJobs(jobs){
-    const jobsContainer = document.getElementById('jobs');
-    jobsContainer.innerHTML = ''
-    container = ''
+    jobsContainer.innerHTML = '';
+    container = '';
     for (var idx = 0; idx < jobs.length; idx++){
         var job = jobs[idx];
         container += 
