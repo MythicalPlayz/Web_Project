@@ -19,7 +19,8 @@ urlpatterns = [
 
     path('history/', views.history ,name='history'),
     path('joblist/', views.joblist, name='joblist'),
-    path('jobs/applicants/<str:id>/', views.applicants, name='applicants'),
+    path('jobs/applicants/<str:id>/', views.applicants, name='applicants - id'),
+    path('jobs/applicants/', views.applicantsall, name='applicants'),
 ]
 
 

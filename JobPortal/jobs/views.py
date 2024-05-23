@@ -298,7 +298,31 @@ def applicants(request, id):
     prameters = {
         'applicants': applicants,
         'username': user.username,
-        'job': jobobject
+    }
+    template = loader.get_template('applicants.html')
+    return HttpResponse(template.render(prameters, request))
+
+@login_required(login_url='/login/')
+def applicantsall(request):
+    user = request.user
+    if not isadmin(user.account_type):
+        return HttpResponse('Unauthorized', status=401)
+    
+    company = user.company
+    ids = Company.objects.filter(name=company).values()
+    applicants = []
+    print(ids)
+    for id in ids:
+        jid = id.get('jobid')
+        jobapps = Applicant.objects.filter(jobid=jid).order_by('-time')
+        print(jobapps)
+        for x in jobapps:
+            x.name = Job.objects.get(id=jid).name
+            applicants.insert(len(applicants),x)
+    print(applicants)
+    prameters = {
+        'applicants': applicants,
+        'username': user.username,
     }
     template = loader.get_template('applicants.html')
     return HttpResponse(template.render(prameters, request))
