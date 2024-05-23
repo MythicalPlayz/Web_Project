@@ -1,9 +1,10 @@
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, JsonResponse
 from django.template import loader
 from .models import Job, Company, Applicant
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import redirect, render
+import json
 
 def isadmin(type):
     return type
@@ -283,6 +284,7 @@ def joblist(request):
     return HttpResponse(template.render(prameters, request))
 
 @login_required(login_url='/login/')
+@csrf_exempt
 def applicants(request, id):
     try:
         jobobject = Job.objects.get(id=id)
@@ -290,39 +292,70 @@ def applicants(request, id):
         raise Http404("Job does not exist")
     user = request.user
     if not isadmin(user.account_type):
-        return HttpResponse('Unauthorized', status=401)
+            return HttpResponse('Unauthorized', status=401)
     
-    applicants = Applicant.objects.filter(jobid=id).order_by('-time')
-    for x in applicants:
-        x.name = jobobject.name
-    prameters = {
-        'applicants': applicants,
-        'username': user.username,
-    }
-    template = loader.get_template('applicants.html')
-    return HttpResponse(template.render(prameters, request))
+    if request.method == 'GET':
+        
+        applicants = Applicant.objects.filter(jobid=id).order_by('-time')
+        for x in applicants:
+            x.name = jobobject.name
+        prameters = {
+            'applicants': applicants,
+            'username': user.username,
+        }
+        template = loader.get_template('applicants.html')
+        return HttpResponse(template.render(prameters, request))
+    elif request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            aid = data['id'].removeprefix('applicant-')
+            type = data['type']
+            applicant = Applicant.objects.get(id=aid)
+            if applicant.status != 'pending':
+                return JsonResponse({'status': 'error'})
+            applicant.admin = user.username
+            applicant.status = type
+            applicant.save()
+            return JsonResponse({'status': 'success'})
+        except:
+            return JsonResponse({'status': 'error'})
 
 @login_required(login_url='/login/')
+@csrf_exempt
 def applicantsall(request):
     user = request.user
     if not isadmin(user.account_type):
         return HttpResponse('Unauthorized', status=401)
-    
-    company = user.company
-    ids = Company.objects.filter(name=company).values()
-    applicants = []
-    print(ids)
-    for id in ids:
-        jid = id.get('jobid')
-        jobapps = Applicant.objects.filter(jobid=jid).order_by('-time')
-        print(jobapps)
-        for x in jobapps:
-            x.name = Job.objects.get(id=jid).name
-            applicants.insert(len(applicants),x)
-    print(applicants)
-    prameters = {
-        'applicants': applicants,
-        'username': user.username,
-    }
-    template = loader.get_template('applicants.html')
-    return HttpResponse(template.render(prameters, request))
+    if request.method == 'GET':
+        company = user.company
+        ids = Company.objects.filter(name=company).values()
+        applicants = []
+        print(ids)
+        for id in ids:
+            jid = id.get('jobid')
+            jobapps = Applicant.objects.filter(jobid=jid).order_by('-time')
+            print(jobapps)
+            for x in jobapps:
+                x.name = Job.objects.get(id=jid).name
+                applicants.insert(len(applicants),x)
+        print(applicants)
+        prameters = {
+            'applicants': applicants,
+            'username': user.username,
+        }
+        template = loader.get_template('applicants.html')
+        return HttpResponse(template.render(prameters, request))
+    elif request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            aid = data['id'].removeprefix('applicant-')
+            type = data['type']
+            applicant = Applicant.objects.get(id=aid)
+            if applicant.status != 'pending':
+                return JsonResponse({'status': 'error'})
+            applicant.admin = user.username
+            applicant.status = type
+            applicant.save()
+            return JsonResponse({'status': 'success'})
+        except:
+            return JsonResponse({'status': 'error'})

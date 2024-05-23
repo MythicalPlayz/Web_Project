@@ -1,5 +1,3 @@
-const xhr = new XMLHttpRequest();
-
 function getInfo() {
     const info = {
         'name': document.getElementById('name').value,
@@ -13,10 +11,11 @@ function getInfo() {
 }
 
 function add() {
+    const xhr = new XMLHttpRequest();
     xhr.open("POST", window.location.href);
     xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-
-    const info = JSON.stringify(info);
+    const i = getInfo()
+    const info = JSON.stringify(i);
     xhr.send(info);
 }
 
