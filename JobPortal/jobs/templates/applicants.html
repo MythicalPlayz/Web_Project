@@ -35,8 +35,8 @@
         <div class="inner-container">
             <div class="filter">
                 <h3>FILTER APP</h3>
-                <form>
-                    <input type="text" id="jobID" placeholder="Job ID" name='jobid' value="{{job.id}}"/>
+                <form id="filterForm">
+                    <input type="text" id="jobid" placeholder="Job ID" name='jobid' value="{{job.id}}"/>
                     <input type="submit" value="Filter" id="filter" />
                 </form>
             </div>
@@ -74,4 +74,5 @@
     </div>
 </body>
 <script src="{% static 'js/admin-applicant.js' %}"></script>
+<script src="{% static 'js/ajax-applicants.js' %}"></script>
 </html>

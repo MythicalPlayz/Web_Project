@@ -330,15 +330,12 @@ def applicantsall(request):
         company = user.company
         ids = Company.objects.filter(name=company).values()
         applicants = []
-        print(ids)
         for id in ids:
             jid = id.get('jobid')
             jobapps = Applicant.objects.filter(jobid=jid).order_by('-time')
-            print(jobapps)
             for x in jobapps:
                 x.name = Job.objects.get(id=jid).name
                 applicants.insert(len(applicants),x)
-        print(applicants)
         prameters = {
             'applicants': applicants,
             'username': user.username,

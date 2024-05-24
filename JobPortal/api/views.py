@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404, JsonResponse
-from jobs.models import Job
+from jobs.models import Job, Applicant, Company
 
 def welcome(request):
     return JsonResponse({'status': 'success', 'message': 'Hello World!'})
@@ -33,3 +33,22 @@ def getJobFilter(request, sname, exp):
         jobs = Job.objects.filter(xp__gte=exp).values()
     jobs = list(jobs)
     return JsonResponse({'status': 'success','jobs': jobs})
+
+def getApplicantFilter(request, jid):
+    if request.user.is_anonymous or not request.user.account_type:
+        return JsonResponse({'status': 'error', 'reason': 'unauthorised'}, status = 401)
+    
+    company = request.user.company
+    ids = Company.objects.filter(name=company).values()
+    for id in ids:
+        id = id['jobid']
+        jobapps = []
+        if jid == 'NULL_ID':
+            jobapps = Applicant.objects.filter(jobid=id).order_by('-time').values()
+        else:
+            jobapps += Applicant.objects.filter(jobid=id).filter(jobid__startswith=jid).order_by('-time').values()
+    for x in jobapps:
+        id = x['jobid']
+        x['name'] = Job.objects.get(id=id).name
+    jobapps = list(jobapps)
+    return JsonResponse({'status': 'success', 'apps': jobapps})
