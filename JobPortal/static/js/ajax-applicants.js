@@ -24,11 +24,11 @@ form.addEventListener('submit', function(event) {
                     }
                 };
 
+                jobsContainer.innerHTML = `<div class='load-center'><div class="loader"></div></div>`;
                 xhr.send();
 })
 
 function reloadApps(apps){
-    jobsContainer.innerHTML = '';
     container = '';
     for (var idx = 0; idx < apps.length; idx++){
         var app = apps[idx];
@@ -62,6 +62,9 @@ function reloadApps(apps){
             `;
         }
         container += '</div>';
+    }
+    if (!container){
+        container = '<p>Sorry there are no Jobs meeting the search filter</p>';
     }
     jobsContainer.innerHTML = container;
 }

@@ -27,12 +27,11 @@ form.addEventListener('submit', function(event) {
                         window.alert('Failed to fetch jobs');
                     }
                 };
-
+                jobsContainer.innerHTML = `<div class='load-center'><div class="loader"></div></div>`;
                 xhr.send();
 })
 
 function reloadJobs(jobs){
-    jobsContainer.innerHTML = '';
     container = '';
     for (var idx = 0; idx < jobs.length; idx++){
         var job = jobs[idx];
@@ -46,6 +45,9 @@ function reloadJobs(jobs){
             <p class="company">${job.company}</p>
         </div>
     </a>`;
+    }
+    if (!container) {
+        container = '<p>Sorry there are no Jobs meeting the search filter</p>'
     }
     jobsContainer.innerHTML = container;
 }
