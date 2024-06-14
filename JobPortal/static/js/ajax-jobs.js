@@ -47,7 +47,7 @@ function reloadJobs(jobs){
     </a>`;
     }
     if (!container) {
-        container = '<p>Sorry there are no Jobs meeting the search filter</p>'
+        container = '<p>Sorry, could not find results</p>'
     }
     jobsContainer.innerHTML = container;
 }

@@ -26,3 +26,6 @@ Job.objects.all().values()
 
 from {app_name}.models import {model_name}
  {model_name}.objects.all().delete()
+
+
+from jobs.models import Job, Company, Applicant

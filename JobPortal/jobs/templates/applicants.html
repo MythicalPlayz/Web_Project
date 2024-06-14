@@ -42,7 +42,7 @@
             </div>
             <div class="applicants" id="applicants">
                 {%if not applicants %}
-                <p>Sorry there are no Applicants meeting the search filter</p>
+                <p>Sorry, could not find results</p>
                 {%endif%}
                 {% for x in applicants %}
                     <div class="job" id="applicant-{{x.id}}">

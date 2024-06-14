@@ -41,6 +41,9 @@
                 </form>
             </div>
             <div class="jobs" id="jobs">
+                {%if not jobs%}
+                <p>Sorry, could not find results.</p>
+                {%endif%}
                 {% for x in jobs %}
                     <a href="details/{{ x.id }}">
                         <div class="job">
