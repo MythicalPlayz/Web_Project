@@ -64,7 +64,7 @@ function reloadApps(apps){
         container += '</div>';
     }
     if (!container){
-        container = '<p>Sorry there are no Jobs meeting the search filter</p>';
+        container = '<p>Sorry there are no Applicants meeting the search filter</p>';
     }
     jobsContainer.innerHTML = container;
 }
