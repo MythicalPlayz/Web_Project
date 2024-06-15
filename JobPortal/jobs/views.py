@@ -1,9 +1,11 @@
 from django.http import HttpResponse, Http404, JsonResponse
 from django.template import loader
 from .models import Job, Company, Applicant
+from accounts.models import Account
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import redirect, render
+from django.db import IntegrityError
 import json
 
 def isadmin(type):
@@ -67,7 +69,7 @@ def add(request):
             job = Job(id,name,status,xp,desc,salary,admin,company)
             job.save()
 
-            comp = Company(id,company)
+            comp = Company(job=job,name=company)
             comp.save()
             return redirect('/jobs/add/success/')
         except:
@@ -143,9 +145,6 @@ def delete(request, id):
             if jobobject.company != user.company:
                     return HttpResponse('Unauthorized', status=401)
             jobobject.delete()
-            companyid = Company.objects.get(jobid=id)
-            companyid.delete()
-            Applicant.objects.filter(jobid=id).delete()
             return redirect('/jobs/delete/success/')
         except:
             return redirect('/jobs/fail/')
@@ -215,14 +214,14 @@ def apply(request, id):
     elif request.method == 'POST':
         try:
             username = user.username
-            jobid = id
+            job = Job.objects.get(id=id)
             fullname = request.POST.get('fname')
             email = request.POST.get('email')
             resume = request.FILES.get('resume')
             print(fullname)
             applicant = Applicant(
                 username=username,
-                jobid=jobid,
+                job=job,
                 fullname=fullname,
                 email=email,
                 resume=resume
@@ -261,7 +260,7 @@ def history(request):
     applied = Applicant.objects.filter(username=user.username).order_by('-time')
     names = {}
     for x in applied:
-        jobid = x.jobid
+        jobid = x.job_id
         x.name = Job.objects.get(id=jobid).name
     prameters = {
         'applied': applied,
@@ -296,7 +295,7 @@ def applicants(request, id):
     
     if request.method == 'GET':
         
-        applicants = Applicant.objects.filter(jobid=id).order_by('-time')
+        applicants = Applicant.objects.filter(job=id).order_by('-time')
         for x in applicants:
             x.name = jobobject.name
         prameters = {
@@ -331,10 +330,11 @@ def applicantsall(request):
         ids = Company.objects.filter(name=company).values()
         applicants = []
         for id in ids:
-            jid = id.get('jobid')
-            jobapps = Applicant.objects.filter(jobid=jid).order_by('-time')
+            jid = id.get('job_id')
+            name = Job.objects.get(id=jid)
+            jobapps = Applicant.objects.filter(job=jid).order_by('-time')
             for x in jobapps:
-                x.name = Job.objects.get(id=jid).name
+                x.name = name
                 applicants.insert(len(applicants),x)
         prameters = {
             'applicants': applicants,

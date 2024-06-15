@@ -32,10 +32,10 @@ function reloadApps(apps){
     container = '';
     for (var idx = 0; idx < apps.length; idx++){
         var app = apps[idx];
-        container += //TODO Have Job name being send
+        container +=
         `<div class="job" id="applicant-${app.id}">
         <div class="job-info">
-            <h3 class="id">${app.jobid}</h3>
+            <h3 class="id">${app.job_id}</h3>
             <h3 class="name">${app.name}</h3>
         </div>
         <div class="app-info">
@@ -50,7 +50,7 @@ function reloadApps(apps){
         </div>
         <div class="status">
             <p class="type">Status: ${app.status}</p>
-            <p class="admin">Reviewed by: ${app.admin}</p>
+            <p class="admin">Reviewed by: ${(app.admin !== 'Null') ? 'None' : app.admin}</p>
         </div>`;
         if (app.status === 'pending'){
             container += 

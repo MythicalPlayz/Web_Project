@@ -25,6 +25,7 @@ if (addButton){
 }
 
 function deleteJob() {
+    const xhr = new XMLHttpRequest();
     xhr.open("DELETE", window.location.href + 'delete');
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4) {

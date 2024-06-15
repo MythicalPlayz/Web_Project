@@ -58,3 +58,11 @@
     font-style: italic;
     height: 100%;
 }
+
+
+.list>p {
+    width: 100%;
+    text-align: center;
+    font-family: var(--font-open-sans);
+    font-size: 24px;
+}

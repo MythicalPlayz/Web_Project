@@ -32,15 +32,20 @@
   <div class="container">
     <h2>Jobs Applied (History)</h2>
     <div class="list" id="jobs">
+      {% if not applied %}
+        <p>You currently don't have any jobs listed</p>
+      {% endif %}
       {% for x in applied %}
+       <a href="/jobs/details/{{x.job.id}}">
         <div class="job" id="applicant-{{x.id}}">
           <div class="info">
-            <h3 class="jobid">{{x.jobid}}</h3>
+            <h3 class="jobid">{{x.job.id}}</h3>
             <h3 class="jobname">{{x.name}}</h3>
           </div>
           <p class="companyname">{{x.company}}</p>
           <p class="status">Status: {{x.status}}</p>
         </div>
+       </a>
       {% endfor %}
     </div>
   </div>

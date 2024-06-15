@@ -1,6 +1,7 @@
 from django.db import models
 import uuid
 import os
+from accounts.models import Account
 
 def generate_unique_filename(instance, filename):
     ext = filename.split('.')[-1]
@@ -9,7 +10,7 @@ def generate_unique_filename(instance, filename):
 
 # Create your models here.
 class Job(models.Model):
-    id = models.CharField(max_length=5, primary_key=True)
+    id = models.CharField(max_length=10, primary_key=True)
     name = models.CharField(max_length=255)
     status = models.BooleanField(default=False)
     xp = models.PositiveIntegerField(default=0) 
@@ -20,15 +21,14 @@ class Job(models.Model):
 
 class Company(models.Model):
     class Meta:
-        unique_together = ('name', 'jobid')
+        unique_together = ('name', 'job')
 
-    jobid = models.CharField(max_length=5, primary_key=True)
+    job = models.OneToOneField(Job, on_delete=models.CASCADE, related_name='job_company')
     name = models.CharField(max_length=255)
-
 
 class Applicant(models.Model):
     username = models.CharField(max_length=255)
-    jobid = models.CharField(max_length=5)
+    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name='job_applicant')
     time = models.DateTimeField(auto_now_add=True)
     fullname = models.CharField(max_length=255)
     email = models.EmailField()
@@ -37,5 +37,4 @@ class Applicant(models.Model):
     resume = models.FileField(upload_to=generate_unique_filename)
 
     class Meta:
-        # Define a composite key
-        unique_together = ('username', 'jobid', 'time')
+        unique_together = ('username', 'job', 'time')

@@ -34,6 +34,9 @@
     <div class="container">
       <h2>List of Jobs</h2>
       <div class="list" id="jobs">
+        {% if not jobs %}
+        <p>You currently don't have any jobs listed</p>
+        {% endif %}
         {% for x in jobs%}
         <a href="/jobs/details/{{ x.id }}">
           <div class="job">

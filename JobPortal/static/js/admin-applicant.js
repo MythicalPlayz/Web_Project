@@ -7,7 +7,7 @@ function reply(id, type, element) {
     const info = JSON.stringify({'id': id, 'type': type});
     xhr.onload = function() {
         if (xhr.status === 200) {
-            resetApp(element);
+            resetApp(element,type);
         } else {
             window.alert('Failed to update');
         }
@@ -35,7 +35,8 @@ for (x of denyButtons){
     })
 }
 
-function resetApp(buttonsElement){
-    buttonsElement.parentElement.getElementsByClassName('type')[0].innerHTML = 'Status Changed' //Update
+function resetApp(buttonsElement,type){
+    buttonsElement.parentElement.getElementsByClassName('type')[0].innerHTML = `Status: ${type.charAt(0).toUpperCase() + type.slice(1)}`
+    buttonsElement.parentElement.getElementsByClassName('admin')[0].innerHTML = `Reviewed by: ${document.getElementById('username').innerHTML}`
     buttonsElement.remove();
 }
