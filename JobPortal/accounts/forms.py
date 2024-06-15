@@ -48,3 +48,6 @@ class SignupForm(forms.ModelForm):
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
+    error_messages = {
+        'invalid_login': "Username or password do not match. Please try again.",
+    }

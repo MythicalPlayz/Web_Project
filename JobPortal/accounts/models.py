@@ -7,7 +7,7 @@ class Account(AbstractUser):
         (0, 'user'),
         (1, 'coadmin'),
     )
-    username = models.CharField(max_length=255, primary_key=True)
+    username = models.CharField(max_length=255, primary_key=True, help_text='Username has to be at minimum 8 characters.')
     password = models.CharField(max_length=255)
     account_type = models.IntegerField(choices=ACCOUNT_TYPES, default=0)
     email = models.EmailField()

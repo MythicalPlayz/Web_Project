@@ -44,7 +44,7 @@ def loginP(request):
                 login(request, user)
                 return redirect('home')
             else:
-                messages.error(request, 'Invalid Username or Password')
+                form.add_error(None, 'Invalid username or password. Please try again.')
         else:
             print(form.errors)
     else:
