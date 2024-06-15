@@ -62,3 +62,10 @@ def isvalidUsername(request,username):
     if user or len(username) < 8:
         valid = False
     return JsonResponse({'status': 'success', 'valid': valid})
+
+def isvalidJob(request,id):
+    valid = True
+    job = Job.objects.filter(id=id)
+    if job or len(id) < 2:
+        valid = False
+    return JsonResponse({'status': 'success', 'valid': valid})

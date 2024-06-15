@@ -7,5 +7,7 @@ urlpatterns = [
     path('api/jobs/id/<str:jid>/', views.getJob),
     path('api/jobs/filter/<str:sname>/<int:exp>/', views.getJobFilter),
     path('api/applicants/<str:jid>/', views.getApplicantFilter),
-    path('api/username/<str:username>/', views.isvalidUsername)
+    path('api/username/<str:username>/', views.isvalidUsername),
+    path('api/job/<str:id>/', views.isvalidJob),
+
 ]
