@@ -1,0 +1,216 @@
+.container {
+    position: relative;
+    height: 100vh;
+}
+
+.container .image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+.container .black-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--main-color-alpha);
+}
+
+.container .inner-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-top: 64px;
+}
+
+.container .inner-container h3 {
+    font-family: var(--font-inter);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 48px;
+    color: var(--text-color-w);
+}
+
+.container .inner-container .main {
+    background-color: var(--main-color-light);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: var(--border-radius-l);
+    gap: 32px;
+    width: 30%;
+    margin-block: 16px;
+}
+
+.container .inner-container .main .options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: var(--border-radius-f);
+    width: 100%;
+    height: 64px;
+    color: var(--text-color-w);
+    background-color: var(--main-color-normal);
+    margin-block: 16px;
+    font-size: 24px;
+}
+
+.container .inner-container .main .options a {
+    width: 50%;
+    font-family: var(--font-roboto);
+    font-size: inherit;
+    height: 100%;
+    color: var(--text-color-w);
+    border-radius: var(--border-radius-f);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .inner-container .main .options .selected {
+    background-color: var(--main-color-vlight);
+    color: var(--text-color-b);
+}
+
+.container .inner-container .main .form input {
+    height: 64px;
+    width: calc(100% - 32px);
+    display: block;
+    background-color: var(--main-color-vlight);
+    border: 0;
+    border-radius: var(--border-radius-f);
+    padding-inline: 16px;
+    margin-block: 16px;
+    font-size: 24px;
+    font-family: var(--font-open-sans);
+    font-style: normal;
+}
+
+.container .inner-container .main .form input:placeholder-shown {
+    font-style: italic;
+}
+
+.container .inner-container .main .form input:focus {
+    outline: 5px var(--main-color-normal) solid;
+}
+
+.container .inner-container .main .form #login,
+.container .inner-container .main .form #signup {
+    width: 45%;
+    margin: auto;
+    color: var(--text-color-w);
+    background-color: var(--main-color-normal);
+    transition: all 250ms ease-in-out;
+}
+
+.container .inner-container .main .form #login:hover,
+.container .inner-container .main .form #signup:hover {
+    background-color: var(--main-color-vlight);
+    color: var(--text-color-b);
+}
+
+.container .inner-container .main .form #login:focus,
+.container .inner-container .main .form #signup:focus {
+    outline: 0;
+}
+
+.container .inner-container .main .form .type {
+    display: flex;
+    background-color: var(--main-color-dark);
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    border-radius: var(--border-radius-f);
+    width: 100%;
+    height: 64px;
+    margin-block: 16px;
+    position: relative;
+    font-size: 24px;
+}
+
+.container .inner-container .main .form .type input {
+    display: none;
+}
+
+.container .inner-container .main .form .type label {
+    font-size: inherit;
+    font-style: italic;
+    font-family: var(--font-open-sans);
+    color: var(--text-color-w);
+    width: calc(100% / 2);
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 250ms ease-in-out;
+    border-radius: var(--border-radius-f);
+    z-index: 2;
+}
+
+.container .inner-container .main .form .type div {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background-color: var(--main-color-vlight);
+    top: 0;
+    left: 0;
+    border-radius: var(--border-radius-f);
+    transition: all 250ms ease-in-out;
+}
+
+.container .inner-container .main .form .type input[value='coadmin']:checked~div {
+    left: 50%;
+}
+
+.container .inner-container .main .form .type input:checked+label {
+    color: var(--text-color-b);
+}
+
+.container .inner-container .main .form #company {
+    height: 0px;
+    padding-block: 0;
+    margin-bottom: 0;
+    transition: all 250ms ease-in-out;
+}
+
+.container .inner-container .main .form #company:required {
+    height: 64px;
+    padding-block: 1px;
+    margin-block: 16px;
+}
+
+form>p {
+    width: 100%;
+    margin-block: 8px;
+    font-size: 20px;
+    font-family: var(--font-open-sans);
+    text-align: center;
+}
+
+.errorlist {
+    color: red;
+    padding-left: 0;
+    width: 100%;
+    text-align: center;
+    font-family: var(--font-open-sans);
+}
+
+.errorlist li {
+    list-style: none;
+}
+
+input+ul {
+    display: none;
+}
+
+input:focus+ul {
+    display: block;
+}

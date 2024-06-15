@@ -1,0 +1,100 @@
+.container {
+    margin-top: calc(64px + 60px);
+    padding-inline: 50px;
+}
+
+.container h2 {
+    font-size: 48px;
+    font-family: var(--font-poppins);
+    font-weight: 500;
+    margin-block: 16px; 
+    position: relative;
+}
+
+.container h3 {
+    font-size: 32px;
+    font-family: var(--font-poppins);
+    font-weight: 500;
+    margin-block: 16px;
+    position: relative; 
+}
+
+.container h2::before, .container h3::before {
+    content: '';
+    width: 5px;
+    height: 100%;
+    position: absolute;
+    left: -10px;
+    top: 0;
+    background-color: var(--main-color-dark);
+}
+
+.container .quick-short {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.container .quick-short .job {
+    background-color: var(--main-color-normal);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    color: var(--text-color-w);
+    border-radius: var(--border-radius-l);
+    width: 30%;
+    margin-block: 16px;
+    font-family: var(--font-inter);
+}
+
+.container .quick-short .job h4 {
+    font-size: 24px;
+    font-weight: 500;
+    text-align: start;
+    width: 100%;
+    margin-block: 8px;
+}
+
+.container .quick-short .job p {
+    width: 100%;
+    text-align: start;
+    font-style: italic;
+    margin-block: 8px;
+}
+
+.container .quick-short .job span {
+    display: block;
+    font-style: italic;
+    margin-block: 8px;
+}
+
+.container a {
+    display: block;
+    width: 15%;
+    background-color: var(--main-color-light);
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color-w);
+    font-size: 24px;
+    font-family: var(--font-roboto);
+    border-radius: var(--border-radius-f);
+    margin: 8px auto;
+    transition: all 250ms ease-in-out;
+}
+
+.container .quick-link {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.container .quick-link a{
+    margin: 8px;
+}
+
+.container a:hover {
+    background-color: var(--main-color-vlight);
+    color:  var(--text-color-b);
+}
