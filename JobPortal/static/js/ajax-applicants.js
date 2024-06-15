@@ -50,7 +50,7 @@ function reloadApps(apps){
         </div>
         <div class="status">
             <p class="type">Status: ${app.status}</p>
-            <p class="admin">Reviewed by: ${(app.admin !== 'Null') ? 'None' : app.admin}</p>
+            <p class="admin">Reviewed by: ${(app.admin === 'Null') ? 'None' : app.admin}</p>
         </div>`;
         if (app.status === 'pending'){
             container += 
