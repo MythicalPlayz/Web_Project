@@ -45,7 +45,7 @@
             <input type="text" placeholder="Username" name="username" minlength="8" required id="username"/>
             <ul>
               <li><p>Username must have at least 8 char. and unique</p></li>
-              <li><p class='usernamelabel'>Username Status:</p></li>
+              <li><p id='usernamelabel'>Username Status:</p></li>
             </ul>
             {% if form.errors.username %}
                 <p>{{ form.errors.username }}</p>
@@ -104,4 +104,5 @@ if (coadminRadio) {
 }
 </script>
 <script src="{% static 'js/validateAccount.js' %}"></script>
+<script src="{% static 'js/ajax-signup.js' %}"></script>
 </html>

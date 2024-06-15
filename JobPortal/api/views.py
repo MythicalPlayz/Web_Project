@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404, JsonResponse
 from jobs.models import Job, Applicant, Company
+from accounts.models import Account
 
 def welcome(request):
     return JsonResponse({'status': 'success', 'message': 'Hello World!'})
@@ -54,3 +55,10 @@ def getApplicantFilter(request, jid):
         x['name'] = Job.objects.get(id=id).name
     jobapps = list(jobapps)
     return JsonResponse({'status': 'success', 'apps': jobapps})
+
+def isvalidUsername(request,username):
+    valid = True
+    user = Account.objects.filter(username=username)
+    if user or len(username) < 8:
+        valid = False
+    return JsonResponse({'status': 'success', 'valid': valid})
