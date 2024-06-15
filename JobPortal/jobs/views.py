@@ -45,7 +45,8 @@ def details(request, id):
 def add(request):
     user = request.user
     if not isadmin(user.account_type):
-        return HttpResponse('Unauthorized', status=401)
+        template = loader.get_template('401.html')
+        return HttpResponse(template.render(), status=401)
     
     if request.method == 'GET':
         template = loader.get_template('add_job.html')
@@ -83,7 +84,8 @@ def add(request):
 def edit(request, id):
     user = request.user
     if not isadmin(user.account_type):
-        return HttpResponse('Unauthorized', status=401)
+        template = loader.get_template('401.html')
+        return HttpResponse(template.render(), status=401)
     
     if request.method == 'GET':
         try:
@@ -92,7 +94,8 @@ def edit(request, id):
             raise Http404("Job does not exist")
         
         if jobobject.company != user.company:
-            return HttpResponse('Unauthorized', status=401)
+            template = loader.get_template('401.html')
+            return HttpResponse(template.render(), status=401)
 
         template = loader.get_template('edit_job.html')
         prameters = {
@@ -114,7 +117,8 @@ def edit(request, id):
             salary = request.POST['salary']
 
             if jobobject.company != user.company:
-                return HttpResponse('Unauthorized', status=401)
+                template = loader.get_template('401.html')
+                return HttpResponse(template.render(), status=401)
             jobobject.name = name
             jobobject.status = status
             jobobject.xp = xp
@@ -134,7 +138,8 @@ def edit(request, id):
 def delete(request, id):
     user = request.user
     if not isadmin(user.account_type):
-        return HttpResponse('Unauthorized', status=401)
+        template = loader.get_template('401.html')
+        return HttpResponse(template.render(), status=401)
     
     if request.method == 'DELETE':
         try:
@@ -143,7 +148,8 @@ def delete(request, id):
             except Job.DoesNotExist:
                 raise Http404("Job does not exist")
             if jobobject.company != user.company:
-                    return HttpResponse('Unauthorized', status=401)
+                template = loader.get_template('401.html')
+                return HttpResponse(template.render(), status=401)
             jobobject.delete()
             return redirect('/jobs/delete/success/')
         except:
@@ -196,7 +202,8 @@ def free(request):
 def apply(request, id):
     user = request.user
     if isadmin(user.account_type):
-        return HttpResponse('Unauthorized', status=401)
+        template = loader.get_template('401.html')
+        return HttpResponse(template.render(), status=401)
     
     try:
         jobobject = Job.objects.get(id=id)
@@ -256,7 +263,9 @@ def applyfail(request):
 def history(request):
     user = request.user
     if isadmin(user.account_type):
-        return HttpResponse('Unauthorized', status=401)
+        template = loader.get_template('401.html')
+        return HttpResponse(template.render(), status=401)
+    
     applied = Applicant.objects.filter(username=user.username).order_by('-time')
     names = {}
     for x in applied:
@@ -273,7 +282,8 @@ def history(request):
 def joblist(request):
     user = request.user
     if not isadmin(user.account_type):
-        return HttpResponse('Unauthorized', status=401)
+        template = loader.get_template('401.html')
+        return HttpResponse(template.render(), status=401)
     jobsobjects = Job.objects.filter(company=user.company).order_by('id')
     prameters = {
         'jobs': jobsobjects,
@@ -291,7 +301,8 @@ def applicants(request, id):
         raise Http404("Job does not exist")
     user = request.user
     if not isadmin(user.account_type):
-            return HttpResponse('Unauthorized', status=401)
+            template = loader.get_template('401.html')
+            return HttpResponse(template.render(), status=401)
     
     if request.method == 'GET':
         
@@ -324,7 +335,9 @@ def applicants(request, id):
 def applicantsall(request):
     user = request.user
     if not isadmin(user.account_type):
-        return HttpResponse('Unauthorized', status=401)
+        template = loader.get_template('401.html')
+        return HttpResponse(template.render(), status=401)
+    
     if request.method == 'GET':
         company = user.company
         ids = Company.objects.filter(name=company).values()
