@@ -30,6 +30,9 @@ def signup(request):
             return render(request, 'signup.html', {'form': form})  
 
     else:
+        user = request.user
+        if user.is_authenticated:
+            return redirect('home')
         form = SignupForm()
         return render(request, 'signup.html', {'form': form}) 
 
@@ -48,6 +51,9 @@ def loginP(request):
         else:
             print(form.errors)
     else:
+        user = request.user
+        if user.is_authenticated:
+            return redirect('home')
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
 

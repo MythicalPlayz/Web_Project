@@ -46,7 +46,7 @@
     border-radius: var(--border-radius-l);
     gap: 32px;
     width: 30%;
-    margin-bottom: 32px;
+    margin-block: 16px;
 }
 
 .container .inner-container .main .options {
@@ -58,7 +58,7 @@
     height: 64px;
     color: var(--text-color-w);
     background-color: var(--main-color-normal);
-    margin-top: 32px;
+    margin-block: 16px;
     font-size: 24px;
 }
 
@@ -87,7 +87,7 @@
     border: 0;
     border-radius: var(--border-radius-f);
     padding-inline: 16px;
-    margin-bottom: 32px;
+    margin-block: 16px;
     font-size: 24px;
     font-family: var(--font-open-sans);
     font-style: normal;
@@ -131,7 +131,7 @@
     border-radius: var(--border-radius-f);
     width: 100%;
     height: 64px;
-    margin-bottom: 32px;
+    margin-block: 16px;
     position: relative;
     font-size: 24px;
 }
@@ -184,5 +184,33 @@
 .container .inner-container .main .form #company:required {
     height: 64px;
     padding-block: 1px;
-    margin-bottom: 32px;
+    margin-block: 16px;
+}
+
+form>p {
+    width: 100%;
+    margin-block: 8px;
+    font-size: 20px;
+    font-family: var(--font-open-sans);
+    text-align: center;
+}
+
+.errorlist {
+    color: red;
+    padding-left: 0;
+    width: 100%;
+    text-align: center;
+    font-family: var(--font-open-sans);
+}
+
+.errorlist li {
+    list-style: none;
+}
+
+input+ul {
+    display: none;
+}
+
+input:focus+ul {
+    display: block;
 }

@@ -38,6 +38,9 @@
         </div>
         <div class="form">
           <form id="info" method="post">
+            {% if form.errors %}
+            <p style="color: red;">Incorrect username or password</p>
+            {% endif %}
             {% csrf_token %}
             <input type="text" placeholder="Username" name="username" minlength="8" required />
             <input type="password" placeholder="Password" name="password" minlength="8" required />

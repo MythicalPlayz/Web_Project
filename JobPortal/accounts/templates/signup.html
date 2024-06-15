@@ -38,20 +38,35 @@
         </div>
         <div class="form">
           <form action="" method="post">
+            {% if form.errors %}
+            <p style="color: red;">Incorrect info provided</p>
+            {% endif %}
             {% csrf_token %}
             <input type="text" placeholder="Username" name="username" minlength="8" required id="username"/>
+            <ul>
+              <li><p>Username must have at least 8 char. and unique</p></li>
+              <li><p class='usernamelabel'>Username Status:</p></li>
+            </ul>
             {% if form.errors.username %}
                 <p>{{ form.errors.username }}</p>
             {% endif %}
             <input type="password" placeholder="Password" name="password1" minlength="8" required id="password1"/>
+            <ul>
+              <li><p>A password can't be too similar to the users other personal information.</p></li>
+              <li><p>A password must contain at least 8 characters.</p></li>
+              <li><p>A password can't be a commonly used password.</p></li>
+              <li><p>A password can't be entirely numeric.</p></li>
+            </ul>
             {% if form.errors.password1 %}
                 <p>{{ form.errors.password1 }}</p>
             {% endif %}
             <input type="password" placeholder="Confirm Password" name="password2" minlength="8" required id="password2"/>
+            <ul><li><p>Enter the same password</p></li></ul>
             {% if form.errors.password2 %}
                 <p>{{ form.errors.password2 }}</p>
             {% endif %}
             <input type="email" placeholder="Email" name="email" required id="email"/>
+            <ul><li><p>Enter a vaild email address</p></li></ul>
             {% if form.errors.email %}
                 <p>{{ form.errors.email }}</p>
             {% endif %}
@@ -63,6 +78,7 @@
               <div class="bg"></div>
             </div>
             <input type="text" placeholder="Company Name" name="company" id="company" minlength="2"/>
+            <ul><li><p>Enter the company name (minimum 2 characters)</p></li></ul>
             {% if form.errors.company %}
                 <p>{{ form.errors.company }}</p>
             {% endif %}
