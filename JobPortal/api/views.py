@@ -94,3 +94,16 @@ def getHome(request):
                 app['job_company'] = job.company
             applicants = list(applicants)
         return JsonResponse({'status': 'success', 'applicants': applicants})
+    else:
+        company = request.user.company
+        ids = Company.objects.filter(name=company).values()
+        jobapps = []
+        for id in ids:
+            jobapps += Applicant.objects.filter(job=id['job_id']).order_by('-time').values()
+        for app in jobapps:
+            job = Job.objects.get(id=app['job_id'])
+            app['job_name'] = job.name
+            app['time'] = int(app['time'].timestamp())
+        sorted(jobapps,key=lambda x: x['time'],reverse=True)
+        jobapps = jobapps[:3]
+        return JsonResponse({'status': 'success', 'applicants': jobapps})
