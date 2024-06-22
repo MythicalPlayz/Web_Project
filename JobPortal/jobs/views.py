@@ -212,6 +212,9 @@ def apply(request, id):
     
     
     if request.method == 'GET':
+        if not jobobject.status:
+            template = loader.get_template('401.html')
+            return HttpResponse(template.render(), status=401)
         template = loader.get_template('apply.html')
         parameters = {
             'job': jobobject,

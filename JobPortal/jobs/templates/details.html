@@ -77,8 +77,22 @@
                 {% if job.status %}
                 <div class="buttons"><a href="apply">Apply</a></div>
                 {% endif %} 
-                <div class="history">
+                <div class="history" id="history">
                     <h3>History</h3>
+                    <div class='load-center'><div class="loader"></div></div>
+                    <p>Could not find previous record.</p>
+                    <div class="time">
+                        <p>DATE</p>
+                        <span>Status: Accepted</span>
+                    </div>
+                    <div class="time">
+                        <p>DATE</p>
+                        <span>Status: Accepted</span>
+                    </div>
+                    <div class="time">
+                        <p>DATE</p>
+                        <span>Status: Accepted</span>
+                    </div>
                 </div>
             </div>
             {% endif %}
@@ -87,5 +101,7 @@
 </body>
 {% if type and job.company == company %}
     <script src="{% static 'js/admin-job.js' %}"></script>
+{% elif type == 0%}
+<script src="{% static 'js/ajax-job-history.js' %}"></script
 {% endif %} 
 </html>

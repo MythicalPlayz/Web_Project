@@ -9,5 +9,6 @@ urlpatterns = [
     path('api/applicants/<str:jid>/', views.getApplicantFilter),
     path('api/username/<str:username>/', views.isvalidUsername),
     path('api/job/<str:id>/', views.isvalidJob),
+    path('api/applicants/<str:id>/you/', views.getUserJobHistory),
 
 ]

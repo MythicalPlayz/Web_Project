@@ -69,3 +69,13 @@ def isvalidJob(request,id):
     if job or len(id) < 2:
         valid = False
     return JsonResponse({'status': 'success', 'valid': valid})
+
+def getUserJobHistory(request,id):
+    if request.user.is_anonymous or request.user.account_type:
+        return JsonResponse({'status': 'error', 'reason': 'unauthorised'}, status = 401)
+    applicants = Applicant.objects.filter(job=id, username=request.user.username).order_by('-time').values()[:3]
+    if not applicants:
+        return JsonResponse({'status': 'error', 'reason': 'no apps found'})
+    else:
+        applicants = list(applicants)
+    return JsonResponse({'status': 'success', 'applicants': applicants})
