@@ -10,18 +10,20 @@ async function getUserHistory() {
     if (result.ok){
         const apps = await result.json();
         let container = '<h3>History</h3>';
-        for (let app of apps.applicants){
-            const date = new Date(app.time);
-            const dateString = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`
-            container += `
-                <div class="time">
-                    <p>${dateString}</p>
-                    <span>Status: ${app.status.charAt(0).toUpperCase() + app.status.slice(1)}</span>
-                </div>
-            `
-        }
-        if (!apps.applicants.length){
+        if (!apps.applicants){
             container = noneHTML;
+        }
+        else {
+            for (let app of apps.applicants){
+                const date = new Date(app.time);
+                const dateString = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`
+                container += `
+                    <div class="time">
+                        <p>${dateString}</p>
+                        <span>Status: ${app.status.charAt(0).toUpperCase() + app.status.slice(1)}</span>
+                    </div>
+                    `
+            }
         }
         appElement.innerHTML = container;
 
