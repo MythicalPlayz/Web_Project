@@ -20,7 +20,7 @@ async function getUserHistory() {
                 container += `
                     <div class="time">
                         <p>${dateString}</p>
-                        <span>Status: ${app.status.charAt(0).toUpperCase() + app.status.slice(1)}</span>
+                        <span>Status: ${app.status}</span>
                     </div>
                     `
             }

@@ -14,7 +14,7 @@ async function getUserHome(){
             `<div class="job">
                 <h4>${app.job_name}</h4>
                 <p>${app.fullname}</p>
-                <span>Status: ${app.status.charAt(0).toUpperCase() + app.status.slice(1)}</span>
+                <span>Status: ${app.status}</span>
             </div>`
         }
         if (!container){

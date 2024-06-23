@@ -15,28 +15,19 @@ function reply(id, type, element) {
     xhr.send(info);
 }
 
-const acceptButtons = document.getElementsByClassName('accept');
-const denyButtons = document.getElementsByClassName('deny');
-
-
-for (x of acceptButtons){
-    var id = x.parentElement.parentElement.id;
-    x.addEventListener('click', function () {
-        var type = 'accepted';
-        reply(id, type, x.parentElement);
-    })
+function acceptApplicant(id){
+    var type = 'accepted';
+    reply(id, type, document.getElementById(`applicant-${id}`).querySelector('.buttons'));
 }
 
-for (x of denyButtons){
-    var id = x.parentElement.parentElement.id;
-    x.addEventListener('click', function () {
-        var type = 'denied';
-        reply(id, type, x.parentElement);
-    })
+function denyApplicant(id){
+    var type = 'denied';
+    reply(id, type, document.getElementById(`applicant-${id}`).querySelector('.buttons'));
 }
+
 
 function resetApp(buttonsElement,type){
-    buttonsElement.parentElement.getElementsByClassName('type')[0].innerHTML = `Status: ${type.charAt(0).toUpperCase() + type.slice(1)}`
+    buttonsElement.parentElement.getElementsByClassName('type')[0].innerHTML = `Status: ${type}`
     buttonsElement.parentElement.getElementsByClassName('admin')[0].innerHTML = `Reviewed by: ${document.getElementById('username').innerHTML}`
     buttonsElement.remove();
 }

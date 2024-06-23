@@ -66,8 +66,8 @@
                         </div>
                         {%if x.status == 'pending'%}
                             <div class="buttons">
-                                <button class="accept">Accept</button>
-                                <button class="deny">Deny</button>
+                                <button class="accept" onclick="acceptApplicant('{{x.id}}')">Accept</button>
+                                <button class="deny" onclick="denyApplicant('{{x.id}}')">Deny</button>
                             </div>
                         {%endif%}
                     </div>

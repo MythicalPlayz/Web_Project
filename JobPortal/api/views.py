@@ -85,14 +85,11 @@ def getHome(request):
         return JsonResponse({'status': 'error', 'reason': 'unauthorised'}, status = 401)
     if request.user.account_type == 0:
         applicants = Applicant.objects.filter(username=request.user.username).order_by('-time').values()[:3]
-        if not applicants:
-            return JsonResponse({'status': 'error', 'reason': 'no apps found'})
-        else:
-            for app in applicants:
-                job = Job.objects.get(id=app['job_id'])
-                app['job_name'] = job.name
-                app['job_company'] = job.company
-            applicants = list(applicants)
+        for app in applicants:
+            job = Job.objects.get(id=app['job_id'])
+            app['job_name'] = job.name
+            app['job_company'] = job.company
+        applicants = list(applicants)
         return JsonResponse({'status': 'success', 'applicants': applicants})
     else:
         company = request.user.company

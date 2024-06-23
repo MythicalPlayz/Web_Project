@@ -56,8 +56,8 @@ function reloadApps(apps){
             container += 
             `
             <div class="buttons">
-            <button class="accept">Accept</button>
-            <button class="deny">Deny</button>
+            <button class="accept" onclick="acceptApplicant('${app.id}')">Accept</button>
+            <button class="deny" onclick="denyApplicant('${app.id}')">Deny</button>
             </div>
             `;
         }
