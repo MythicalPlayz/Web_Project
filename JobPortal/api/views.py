@@ -41,15 +41,15 @@ def getApplicantFilter(request, jid):
     
     company = request.user.company
     ids = Company.objects.filter(name=company).values()
+    jobapps = []
     for id in ids:
         id = id['job_id']
-        jobapps = []
         if jid == 'NULL_ID':
-            jobapps = Applicant.objects.filter(job=id).order_by('-time').values()
+            jobapps += Applicant.objects.filter(job=id).order_by('-time').values()
         else:
-            jobs = Job.objects.filter(id__startswith=jid)
-            for app in jobs:
-                jobapps += Applicant.objects.filter(job=id).order_by('-time').values()
+            if not id.lower().startswith(jid.lower()):
+                continue
+            jobapps += Applicant.objects.filter(job=id).order_by('-time').values()
     for x in jobapps:
         id = x['job_id']
         x['name'] = Job.objects.get(id=id).name
