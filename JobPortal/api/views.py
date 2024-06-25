@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404, JsonResponse
-from jobs.models import Job, Applicant, Company
+from jobs.models import Job, Applicant
 from accounts.models import Account
 
 def welcome(request):
@@ -40,19 +40,22 @@ def getApplicantFilter(request, jid):
         return JsonResponse({'status': 'error', 'reason': 'unauthorised'}, status = 401)
     
     company = request.user.company
-    ids = Company.objects.filter(name=company).values()
+    ids = Job.objects.filter(company=company).values()
     jobapps = []
     for id in ids:
-        id = id['job_id']
+        id = id['id']
         if jid == 'NULL_ID':
-            jobapps += Applicant.objects.filter(job=id).order_by('-time').values()
+            newapps = Applicant.objects.filter(job=id).order_by('-time').values()
+            for x in newapps:
+                x['name'] = Job.objects.get(id=id).name
+            jobapps += newapps
         else:
             if not id.lower().startswith(jid.lower()):
                 continue
-            jobapps += Applicant.objects.filter(job=id).order_by('-time').values()
-    for x in jobapps:
-        id = x['job_id']
-        x['name'] = Job.objects.get(id=id).name
+            newapps = Applicant.objects.filter(job=id).order_by('-time').values()
+            for x in newapps:
+                x['name'] = Job.objects.get(id=id).name
+            jobapps += newapps
     jobapps = list(jobapps)
     return JsonResponse({'status': 'success', 'apps': jobapps})
 
@@ -66,7 +69,7 @@ def isvalidUsername(request,username):
 def isvalidJob(request,id):
     valid = True
     job = Job.objects.filter(id=id)
-    if job or len(id) < 2:
+    if job or len(id) < 2 or id == 'NULL_ID':
         valid = False
     return JsonResponse({'status': 'success', 'valid': valid})
 
@@ -74,10 +77,7 @@ def getUserJobHistory(request,id):
     if request.user.is_anonymous or request.user.account_type:
         return JsonResponse({'status': 'error', 'reason': 'unauthorised'}, status = 401)
     applicants = Applicant.objects.filter(job=id, username=request.user.username).order_by('-time').values()[:3]
-    if not applicants:
-        return JsonResponse({'status': 'error', 'reason': 'no apps found'})
-    else:
-        applicants = list(applicants)
+    applicants = list(applicants)
     return JsonResponse({'status': 'success', 'applicants': applicants})
 
 def getHome(request):
@@ -93,14 +93,13 @@ def getHome(request):
         return JsonResponse({'status': 'success', 'applicants': applicants})
     else:
         company = request.user.company
-        ids = Company.objects.filter(name=company).values()
+        ids = Job.objects.filter(company=company).values()
         jobapps = []
         for id in ids:
-            jobapps += Applicant.objects.filter(job=id['job_id']).order_by('-time').values()
-        for app in jobapps:
-            job = Job.objects.get(id=app['job_id'])
-            app['job_name'] = job.name
-            app['time'] = int(app['time'].timestamp())
-        sorted(jobapps,key=lambda x: x['time'],reverse=True)
-        jobapps = jobapps[:3]
+            newapps = Applicant.objects.filter(job=id['id']).order_by('-time').values()
+            for app in newapps:
+                app['job_name'] = id['name']
+                app['time'] = int(app['time'].timestamp())
+            jobapps += newapps
+        jobapps = sorted(jobapps,key=lambda x: x['time'],reverse=True)[:3]
         return JsonResponse({'status': 'success', 'applicants': jobapps})

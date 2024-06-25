@@ -10,7 +10,7 @@ async function getUserHistory() {
     if (result.ok){
         const apps = await result.json();
         let container = '<h3>History</h3>';
-        if (!apps.applicants){
+        if (!apps.applicants.length){
             container = noneHTML;
         }
         else {

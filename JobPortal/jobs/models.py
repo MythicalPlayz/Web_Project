@@ -19,13 +19,6 @@ class Job(models.Model):
     admin = models.CharField(max_length=255)
     company = models.CharField(max_length=255)  
 
-class Company(models.Model):
-    class Meta:
-        unique_together = ('name', 'job')
-
-    job = models.OneToOneField(Job, on_delete=models.CASCADE, related_name='job_company')
-    name = models.CharField(max_length=255)
-
 class Applicant(models.Model):
     username = models.CharField(max_length=255)
     job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name='job_applicant')

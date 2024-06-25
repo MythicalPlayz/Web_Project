@@ -1,6 +1,6 @@
 from django.http import HttpResponse, Http404, JsonResponse
 from django.template import loader
-from .models import Job, Company, Applicant
+from .models import Job, Applicant
 from accounts.models import Account
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
@@ -67,11 +67,12 @@ def add(request):
             admin = user.username
             company = user.company
             
+            if id == 'NULL_ID' or name == 'NULL_NAME':
+                raise Exception('Not Allowed')
+
             job = Job(id,name,status,xp,desc,salary,admin,company)
             job.save()
 
-            comp = Company(job=job,name=company)
-            comp.save()
             return redirect('/jobs/add/success/')
         except:
             return redirect('/jobs/fail/')
@@ -343,15 +344,15 @@ def applicantsall(request):
     
     if request.method == 'GET':
         company = user.company
-        ids = Company.objects.filter(name=company).values()
+        ids = Job.objects.filter(company=company).values()
         applicants = []
         for id in ids:
-            jid = id.get('job_id')
-            name = Job.objects.get(id=jid)
+            jid = id['id']
+            name = id['name']
             jobapps = Applicant.objects.filter(job=jid).order_by('-time')
             for x in jobapps:
                 x.name = name
-                applicants.insert(len(applicants),x)
+            applicants += jobapps
         prameters = {
             'applicants': applicants,
             'username': user.username,
